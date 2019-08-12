@@ -1,0 +1,116 @@
+*{
+    box-sizing: border-box;
+}
+p,h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.profileImage{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+.profileImage img{
+    width: 100%;
+}
+.clientName{
+    font-weight: bold;
+    color:#5d5d5d;
+}
+
+.header{
+    display: flex;
+    padding: 10px 30px;
+    box-shadow: 5px 2px 10px #ddd;
+    position: relative;
+    direction: rtl;
+    justify-content: right;
+    background:#fff;
+}
+.righ-side{
+    display: flex;
+    align-items: right;
+    grid-gap: 10px;
+    align-items: center;
+}
+.welcomeText{
+    color: #5d5d5d;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* Quoations css */
+.carModel{
+text-align: center;
+}
+.Quotation{
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #ddd;
+}
+.cardImages{
+    position: relative;
+}
+.cardImages img{
+    width: 100%;
+}
+.contentBody{
+    margin: 10px;
+}
+.quatation_date{
+    text-align: center;
+    color: rgb(147, 143, 143);
+}
+.Quotation_type{
+    position: absolute;
+    text-transform: uppercase;
+    top: 0;
+    right: 0;
+    color:#fff;
+    padding:5px 10px;
+    border-radius: 10px;
+    background:#f5385d;
+    margin: 10px;
+    font-size: 15px;
+}
+.cardContent{
+    padding: 0 20px;
+}
+.cardContent h3{
+    font-size: 19px;
+    padding-top: 10px;
+}
+.viewButton{
+    display: block;
+    text-decoration: none;
+    background: #ea2147;
+    color:#fff;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    border: none;
+    padding: 10px 0;
+}
+.viewButton:hover{
+    text-decoration: none;
+    background: #f5385d;
+    color:#fff;
+}
+
+.carModel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+}
+
+.carModel img{
+    width: 30px;
+}
+
+.noRequest{
+    text-align: center;
+}
