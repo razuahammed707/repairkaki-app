@@ -13,7 +13,10 @@ const AuthState=(props)=>{
     // LOGOUT
     const LOGOUT=async()=>{
         setAuthentication(false);
-        localStorage.removeItem("isAuthenticated")
+        localStorage.removeItem("isAuthenticated");
+        localStorage.removeItem("token");
+
+
     }
     const SET_AUTH_ALERT=(msg)=>{
         setAuthAlert(msg);
@@ -40,6 +43,7 @@ const AuthState=(props)=>{
             }
             if(loginResponse.data.token){
                 localStorage.setItem("isAuthenticated",true);
+                localStorage.setItem("token",loginResponse.data.token);
 
                 setAuthentication(true);
                 setAuthAlert("");
