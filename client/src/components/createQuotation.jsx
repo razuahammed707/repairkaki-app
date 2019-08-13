@@ -24,7 +24,7 @@ function CreateQuotation({match}){
                 </Carousel.Item>
         </Carousel>
         <div>
-            <label>Problem</label>
+            <label>Lorem ipsum dolor sit, amet consectetur</label>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique.</p>
         </div>
         <Form>

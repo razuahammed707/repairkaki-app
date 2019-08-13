@@ -164,3 +164,32 @@ select{
     text-align: center;
     margin: 0 auto;
 }
+
+@media only screen and (max-width: 800px) {
+    .profile-input-grid{
+        grid-template-columns:  1fr;
+        margin: 5px 0;
+    }
+    .profile-input-grid label{
+        color:#5d5d5d;
+    }
+    .grid-2-menu{
+        grid-template-columns:  1fr;
+    }
+    .menu{
+        height: auto;
+    }
+    .menu ul{
+        margin: 0;
+    }
+    .header{
+        padding: 10px 0;
+    }
+    .menu img{
+        padding: 20px 0;
+    }
+  
+    .grid-4{
+        grid-template-columns: 1fr;
+    }
+}

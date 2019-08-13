@@ -1,0 +1,20 @@
+.profileBox{
+    background:#fff;
+    box-shadow: 0 0 10px #ddd;
+    max-width: 700px;
+    display: block;
+    margin: 0 auto;
+    padding: 40px 20px;
+    margin-top: 30px;
+}
+
+.profile-input-grid{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    margin-bottom: 20px;
+}
+.profile-input-grid input,textarea{
+    border: none;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}

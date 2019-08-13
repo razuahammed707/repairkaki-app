@@ -2,6 +2,7 @@ import React,{useReducer,useState} from "react"
 import PartnerContext from "./partnerContext";
 import PartnerReducer from "./partnerReducer";
 import axios from 'axios';
+import { async } from "q";
 
 
 
@@ -12,7 +13,9 @@ const PartnerState=(props)=>{
     const [quotation,setQuotation]=useState([]);
     const [AuthAlert,setAuthAlert]=useState("");
     const [profile,setProfile]=useState({});
-    const [isAuthenticated,setAuthentication]=useState(false);
+    const [isAuthenticated,setAuthentication]=useState(true);
+    const [isRegister,setRegister]=useState(false);
+    
 
 
     const initialState={
@@ -28,39 +31,63 @@ const PartnerState=(props)=>{
                 carModel:"Audi A8",
                 description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique."
     
-            },
-            {
-                _id:5544,
-                request_type:"Maintanence",
-
-                imageGallery:[
-                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg",
-                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
-                ],
-                title:"Conduct at an replied removal an among",
-                carModel:"Audi A8",
-                description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique."
-    
-            }
-
-        ],
-        user:{
-            username:"Md. Razu Ahammed Molla",
-            profileURL:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1262&q=80"
-        },
-
+            }]
     }
     // Set Auth Alert
     const SET_AUTH_ALERT=(msg)=>{
         setAuthAlert(msg);
     }
+
     //LOAD PROFILE 
-    const LOAD_PROFILE=async(token)=>{     
+    const LOAD_PROFILE=async()=>{     
+        const profile=await axios({ method: 'POST', url: '/v1/partner/profile', headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } })
+        return(
+            setProfile(profile.data)
+        )
     }
+
     
- 
-    //Authenticate 
-    const LOGIN=async(email,password)=>{     
+    // SET LOADING
+    const SET_LOADING=(value)=>{
+        return(setLoading(value))
+    }
+
+    // LOGOUT
+    const LOGOUT=async()=>{
+        await axios.get("/v1/partner/logout");
+        localStorage.removeItem("token")
+        
+        return(
+            localStorage.setItem("isAuthenticated",false)
+
+        )
+        
+    }
+
+    // REGISTRATION
+    const REGISTER=async(user)=>{
+        SET_LOADING(true)
+        var registration=await axios.post("/v1/partner/signup",user);
+        if(registration.data.message){
+            setAuthAlert(registration.data.message);
+            setRegister(false);
+        }else{
+            setRegister(true);
+        }
+        SET_LOADING(false)
+        
+
+    
+
+
+    }
+
+    //LOGIN 
+    const LOGIN=async(email,password)=>{  
+        
+        
+            SET_LOADING(true);
+
             var loginResponse=await axios.post("/v1/partner/login",{
                 email,
                 password
@@ -68,15 +95,20 @@ const PartnerState=(props)=>{
 
             if(loginResponse.data.message){
                 setAuthAlert(loginResponse.data.message);
-                setAuthentication(false);
-
+                localStorage.setItem("isAuthenticated",false);
             }
             if(loginResponse.data.token){
+                localStorage.setItem("token",loginResponse.data.token);
                 setAuthentication(true);
-                localStorage.setItem("token",loginResponse.data.token)
+                localStorage.setItem("isAuthenticated",true)
+                LOAD_PROFILE()
+                setAuthAlert("");
             }    
+            SET_LOADING(false)
+
 
     }
+    
     
 
     const [state,dispatch]=useReducer(PartnerReducer,initialState)
@@ -87,7 +119,15 @@ const PartnerState=(props)=>{
             isAuthenticated,
             LOGIN,
             AuthAlert,
-            SET_AUTH_ALERT
+            SET_AUTH_ALERT,
+            loading,
+            SET_LOADING,
+            REGISTER,
+            isRegister,
+            LOGOUT,
+            profile,
+            LOAD_PROFILE,
+            setAuthentication
             
         }}>
             {props.children}

@@ -1,9 +1,20 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import repairkakiLogo from "./repairkaki_logo.png"
-import { BrowserRouter as Router, Route, NavLink} from "react-router-dom";
+import { BrowserRouter as Redirect, NavLink} from "react-router-dom";
 import "./menu.css"
 
-function Menu(){
+import PartnerContext from "../../context/partner/partnerContext"
+
+function Menu(props){
+
+    const partnerContext=useContext(PartnerContext)
+
+    const logout=()=>{
+        partnerContext.setAuthentication(false)
+        partnerContext.LOGOUT();
+      
+        
+    }
     return(
         <div className="menu">
             <NavLink to="/"><img src={repairkakiLogo}/></NavLink>
@@ -14,14 +25,20 @@ function Menu(){
                     <NavLink to="/partner/request" activeClassName="Menuactive">Request</NavLink>
                     </li>
                     <li>
-                    <NavLink to="/submitted_quotation" activeClassName="Menuactive" >Submitted Quotations</NavLink>
+                    <NavLink to="/partner/submitted_quotation" activeClassName="Menuactive" >Submitted Quotations</NavLink>
                     </li>
                     <li>
-                    <NavLink to="/appointment" activeClassName="Menuactive">Appointment</NavLink>
+                    <NavLink to="/partner/appointment" activeClassName="Menuactive">Appointment</NavLink>
                     </li>
+
                     <li>
-                    <NavLink to="/metrics" activeClassName="Menuactive" >Metrics</NavLink>
+                    <NavLink to="/partner/metrics" activeClassName="Menuactive" >Metrics</NavLink>
                     </li>
+
+                    <li>
+                    <NavLink to="/login" className="logoutBtn" activeClassName="Menuactive" onClick={logout}>Logout</NavLink>
+                    </li>
+
                 </ul>  
             </div>
         </div>

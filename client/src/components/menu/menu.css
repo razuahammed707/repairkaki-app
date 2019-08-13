@@ -1,3 +1,5 @@
+
+
 .grid-2-menu{
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -36,6 +38,10 @@
     font-weight: bold;
     color:black;
 }
+.logoutBtn{
+    position: relative;
+    bottom: 0;
+}
 
 .cardContent p{
     padding: 10px 0;
@@ -60,4 +66,26 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+    .grid-2-menu{
+        grid-template-columns:  1fr;
+    }
+    .menu{
+        height: auto;
+    }
+    .menu ul{
+        margin: 0;
+    }
+    .header{
+        padding: 10px 0;
+    }
+    .menu img{
+        padding: 20px 0;
+    }
+  
+    .grid-4{
+        grid-template-columns: 1fr;
+    }
 }
