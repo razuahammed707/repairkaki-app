@@ -1,15 +1,16 @@
-import React,{useContext,useEffect} from 'react';
+import React,{useContext,useState} from 'react';
 import Menu from "../components/menu/menu"
 import Header from "../components/header/header"
 import Request from "../components/quotationCard"
 import CreateQuotation from "../components/createQuotation";
-import {Route,Redirect } from "react-router-dom";
+import {Route,Redirect,NavLink } from "react-router-dom";
 import Profile from "../pages/profile/profile"
 import PartnerContext from "../context/partner/partnerContext";
 import Appointment from "../components/partner/appointment"
 import Quotation from "../components/partner/quotation"
 import Metrics from "../components/partner/metrics"
-
+import Alert from 'react-bootstrap/Alert';
+import axios from 'axios';
 
 
 
@@ -18,8 +19,22 @@ import Metrics from "../components/partner/metrics"
 function PartnerLayout(props){
   
       const partnerContext = useContext(PartnerContext);
-      const {isAuthenticated}=partnerContext
-      
+      const {isAuthenticated,profile}=partnerContext;
+      const [email,setEmail]=useState("")
+
+
+      var resendEmail=async()=>{
+        const resend= await axios.post("/v1/partner/resend",{_id:profile._id});
+        setEmail("Email sent")
+
+      }
+      //remove setEmail
+      setTimeout(()=>{
+        setEmail("")
+
+      },2000)
+
+    
         if(isAuthenticated==false){
           return(<Redirect to="/login"/>)
         }else{
@@ -31,6 +46,10 @@ function PartnerLayout(props){
       
       
             <div className="contentBody">
+            {(profile.emailVerified?null:(<Alert variant="danger">Please check inbox to verify email. if not found <NavLink onClick={resendEmail}>Resend</NavLink> {email}</Alert>))}
+
+            {/* {(profile.emailVerified?null:(<Alert variant="danger">Please update your profile <NavLink to="/partner/profile">go to profile</NavLink></Alert>))} */}
+
               <Route path="/partner/request" component={Request}/>
               <Route path="/partner/profile" component={Profile}/>
               <Route path="/partner/submitted_quotation" component={Quotation}/>

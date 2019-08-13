@@ -23,6 +23,10 @@ const partnerProfileSchema=Schema({
         type:String,
         default:" "
     },
+    country:{
+        type:String,
+        default:""
+    },
     role:String,
     mobile:{
         type:String,

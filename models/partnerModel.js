@@ -19,6 +19,9 @@ const PartnerSchema=Schema({
         },
         role:{
             type:String
+        },
+        country:{
+            type:String
         }
     },
 

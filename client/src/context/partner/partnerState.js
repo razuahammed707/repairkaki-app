@@ -11,7 +11,7 @@ const PartnerState=(props)=>{
     const [quotation,setQuotation]=useState([]);
     const [AuthAlert,setAuthAlert]=useState("");
     const [profile,setProfile]=useState({});
-    const [isAuthenticated,setAuthentication]=useState(false);
+    const [isAuthenticated,setAuthentication]=useState(true);
     const [isRegister,setRegister]=useState(false);
     
     const initialState={

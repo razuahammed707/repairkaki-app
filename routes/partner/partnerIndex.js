@@ -15,6 +15,7 @@ router.get('/', function(req, res, next) {
   res.send({status:"Not Implimented"})
 });
 
+// UPDATE
 router.post('/update', function(req, res, next) {
     PartnerProfile.findByIdAndUpdate(req.body.id,req.body.profile,(err,data)=>{
         res.send(data)
@@ -22,13 +23,14 @@ router.post('/update', function(req, res, next) {
     })
 });
 
-
+// SIGN UP
 router.post("/signup",(req,res,next)=>{
     var partnerData={
         local:{
             "username":req.body.username,
             "email":req.body.email,
             "role":req.body.role,
+            "country":req.body.country,
             "password":bcrypt.hashSync(req.body.password,bcrypt.genSaltSync(10))
         }
     }
@@ -45,7 +47,8 @@ router.post("/signup",(req,res,next)=>{
                     "authencationId":partner._id,
                     "username":partner.local.username,
                     "email":partner.local.email,
-                    "role":partner.local.role
+                    "role":partner.local.role,
+                    "country":partner.local.country
                 }
                 PartnerProfile.create(Profile,(err,profile)=>{
                     console.log("Profile is created for"+profile.username);
@@ -61,12 +64,15 @@ router.post("/signup",(req,res,next)=>{
     })
 });
 
+//LOGOUT
 router.get("/logout",(req,res,next)=>{
     req.logout();
     res.send({message:"Logout"})
 })
 
 
+
+//LOGIN 
 router.post('/login',(req, res, next) => {
     
     passport.authenticate('login', async (err, user, info) => {     try {
@@ -92,6 +98,26 @@ router.post('/login',(req, res, next) => {
 });
 
 //VERIFY EMAIL
+router.post("/verify",(req,res,next)=>{
+    PartnerProfile.findByIdAndUpdate(req.body._id,{emailVerified:true},(err,user)=>{
+        if(err) throw err;
+        res.send(user)
+        console.log(user)
+    })
+})
+
+//RESEND EMAIL
+router.post("/resend",(req,res,next)=>{
+    var token=`http://localhost:3000/verify/${req.body._id}`;
+    PartnerProfile.findById(req.body._id,(err,profile)=>{
+        if(err) throw err;
+        res.send(profile)
+        var token=`http://localhost:3000/verify/${profile._id}`;
+        email.verify(profile.email,profile.username,token)
+
+        console.log(profile)
+    })
+})
 
 // Partner Profile
 router.post("/profile",passport.authenticate('jwt', { session : false }),PartnerController.profile)

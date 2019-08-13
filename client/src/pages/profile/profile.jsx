@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import "./profile.css";
 import PartnerContext from "../../context/partner/partnerContext";
 import axios from "axios"
@@ -17,6 +17,8 @@ function Profile(){
         const phone=e.target.phone.value;
         const mobile=e.target.mobile.value;
         const description=e.target.description.value;
+        const allowEmailSMS=e.target.allowEmailSMS.value;
+
         var profileData={
             id:profile._id,
             profile:{
@@ -24,7 +26,8 @@ function Profile(){
                 workshopName,
                 phone,
                 mobile,
-                description
+                description,
+                allowEmailSMS
             }
         }
         console.log(profileData);
@@ -56,12 +59,19 @@ function Profile(){
                     <input type="text" name="mobile" defaultValue={profile.mobile} />
                 </div>
                 <div className="profile-input-grid">
-                    <label htmlFor="phone">phone</label>
-                    <input type="text" name="phone" defaultValue={profile.phone} />
+                    <label htmlFor="country">Country</label>
+                    <input type="text" name="country" defaultValue={profile.country} readOnly />
                 </div>
 
                 <div className="profile-input-grid">
-                    <label htmlFor="email">email</label>
+                    <label htmlFor="phone">Phone</label>
+                    <input type="text" name="phone" defaultValue={profile.phone} />
+                </div>
+
+
+
+                <div className="profile-input-grid">
+                    <label htmlFor="email">Email</label>
                     <input type="text" readOnly  defaultValue={profile.email} />
                 </div>
 
@@ -70,6 +80,9 @@ function Profile(){
                     <div>
                     <textarea name="description" defaultValue={profile.description}></textarea>
                     </div>
+                </div>
+                <div>
+                <input type="checkbox" name="allowEmailSMS"/> I agree to allow RepairKaki to contact me by email and sms. 
                 </div>
                 <input type="submit" className="viewButton" value="UPDATE PROFILE"/>
                 {(loading?(<div className="loadingSpinner"><Spinner/></div>):null)}

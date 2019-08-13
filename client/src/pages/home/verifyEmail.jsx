@@ -15,6 +15,7 @@ function VerifyEmail({match}){
         <div className="verifyMessage">
         <h1>Thank you</h1>
         <p>Your email has been verified . </p>
+        <a href="/login">Click here to Login</a>
 
         </div>
     </div>)

@@ -28,10 +28,12 @@ function SignUp(){
         var email=e.target.email.value;
         var password=e.target.password.value;
         var role = e.target.role.value;
+        var country=e.target.country.value;
         console.log(e.target)
         const userInfo={
             username,
             email,
+            country,
             password,
             role
         }
@@ -52,11 +54,19 @@ function SignUp(){
 
                 <input type="text" placeholder="Name" name="username" id="name" required/>
                 <input type="email" placeholder="Work email address"  name="email" id="email" required/>
-                <Form.Group controlId="role" name="role" required>
-                    <Form.Control as="select">
+                <Form.Group controlId="role" name="role">
+                    <Form.Control as="select" required>
                     <option selected disabled>Select Role</option>
                     <option value="partner">Partner</option>
                     <option value="user">User</option>
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="country" name="country">
+                    <Form.Control as="select" required>
+                    <option selected disabled>Select Country</option>
+                    <option value="singapore">Singapore</option>
+                    <option value="malaysia">Malaysia</option>
                     </Form.Control>
                 </Form.Group>
                 <input type="password" placeholder="Password" name="password"  id="password" required/>
