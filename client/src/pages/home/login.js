@@ -2,6 +2,9 @@ import React,{useState,useContext} from "react";
 import MainNav from "./mainNav"
 import Alert from 'react-bootstrap/Alert';
 import PartnerContext from "../../context/partner/partnerContext"
+// import PartnerContext from "../../context/partner/partnerContext"
+import AuthContext from "../../context/auth/authContex"
+
 import {Redirect } from "react-router-dom";
 import Spinner from "../../components/spinners"
 
@@ -10,27 +13,30 @@ import Spinner from "../../components/spinners"
 
 function Login(){
 
-    const partnerContext=useContext(PartnerContext)
-    const {AuthAlert,isAuthenticated,loading}=partnerContext;
+    const partnerContext=useContext(PartnerContext);
+    const authContext = useContext(AuthContext);
+
+    const {AuthAlert,isAuthenticated,loading}=authContext;
+    console.log(AuthAlert)
 
 
 
-    if(partnerContext.AuthAlert=!""){
-        setTimeout(() => {
-            partnerContext.SET_AUTH_ALERT("")
-        }, 2000);
-    }
+
     
 
     const login=async(e)=>{
         e.preventDefault();
         const password= e.target.password.value;
         const email=e.target.email.value;
-        await partnerContext.LOGIN(email,password);    
-        await partnerContext.LOAD_PROFILE();
-        partnerContext.SET_AUTH_ALERT("")   
+        await authContext.LOGIN(email,password);    
+        await partnerContext.LOAD_PROFILE(true);
+        // AuthContext.SET_AUTH_ALERT("")   
     }
-
+    if(authContext.AuthAlert=!""){
+        setTimeout(() => {
+            authContext.setAuthAlert("")
+        }, 2000);
+    }
 
     if(isAuthenticated){
         return(

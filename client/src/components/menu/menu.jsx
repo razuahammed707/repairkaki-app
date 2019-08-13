@@ -8,16 +8,18 @@ import CancelIcon from './cancel.svg'
 
 
 import PartnerContext from "../../context/partner/partnerContext"
+import AuthContext from "../../context/auth/authContex";
 
 function Menu(props){
 
     const partnerContext=useContext(PartnerContext);
+    const authContext = useContext(AuthContext);
+
     const [menu,setMenu]=useState("hideMenu");
     const [icon,setIcon]=useState(MenuIcon);
 
     const logout=()=>{
-        partnerContext.LOGOUT();
-        partnerContext.setAuthentication(false)
+        authContext.LOGOUT();
     }
 
     const showMobileMenu=(e)=>{

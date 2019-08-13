@@ -11,7 +11,7 @@ const PartnerState=(props)=>{
     const [quotation,setQuotation]=useState([]);
     const [AuthAlert,setAuthAlert]=useState("");
     const [profile,setProfile]=useState({});
-    const [isAuthenticated,setAuthentication]=useState(true);
+    const [isAuthenticated,setAuthentication]=useState(false);
     const [isRegister,setRegister]=useState(false);
     
     const initialState={
@@ -35,7 +35,8 @@ const PartnerState=(props)=>{
     }
 
     //LOAD PROFILE 
-    const LOAD_PROFILE=async()=>{     
+    const LOAD_PROFILE=async(value)=>{  
+        console.log(value)   
         const profile=await axios({ method: 'POST', url: '/v1/partner/profile', headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } })
         return(
             setProfile(profile.data)
@@ -49,13 +50,13 @@ const PartnerState=(props)=>{
     }
 
     // LOGOUT
-    const LOGOUT=async()=>{
-        localStorage.removeItem("token");
-        setAuthentication(false)
-        localStorage.setItem("isAuthenticated",false)
+    // const LOGOUT=async()=>{
+    //     localStorage.removeItem("token");
+    //     setAuthentication(false)
+    //     localStorage.setItem("isAuthenticated",false)
 
         
-    }
+    // }
 
     // REGISTRATION
     const REGISTER=async(user)=>{
@@ -76,29 +77,30 @@ const PartnerState=(props)=>{
     }
 
     //LOGIN 
-    const LOGIN=async(email,password)=>{  
+    // const LOGIN=async(email,password)=>{  
         
         
-            SET_LOADING(true);
+    //         SET_LOADING(true);
 
-            var loginResponse= await axios.post("/v1/partner/login",{
-                email,
-                password
-            });
+    //         var loginResponse= await axios.post("/v1/partner/login",{
+    //             email,
+    //             password
+    //         });
 
-            if(loginResponse.data.message){
-                setAuthAlert(loginResponse.data.message);
-                localStorage.setItem("isAuthenticated",false);
-            }
-            if(loginResponse.data.token){
-                localStorage.setItem("token",loginResponse.data.token);
-                setAuthentication(true);
-                setAuthAlert("");
-            }    
-            SET_LOADING(false)
+    //         if(loginResponse.data.message){
+    //             setAuthAlert(loginResponse.data.message);
+    //             localStorage.setItem("isAuthenticated",false);
+    //         }
+    //         if(loginResponse.data.token){
+    //             localStorage.setItem("token",loginResponse.data.token);
+    //             setAuthentication(true);
+    //             setAuthAlert("");
+                
+    //         }    
+    //         SET_LOADING(false)
 
 
-    }
+    // }
     
     
 
@@ -107,18 +109,18 @@ const PartnerState=(props)=>{
     return(
         <PartnerContext.Provider value={{
             ...state,
-            isAuthenticated,
-            LOGIN,
+            // isAuthenticated,
+            // LOGIN,
             AuthAlert,
             SET_AUTH_ALERT,
             loading,
             SET_LOADING,
             REGISTER,
             isRegister,
-            LOGOUT,
+            // LOGOUT,
             profile,
             LOAD_PROFILE,
-            setAuthentication
+            // setAuthentication
             
         }}>
             {props.children}

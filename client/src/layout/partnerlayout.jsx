@@ -1,4 +1,4 @@
-import React,{useContext,useState} from 'react';
+import React,{useContext,useState,useEffect} from 'react';
 import Menu from "../components/menu/menu"
 import Header from "../components/header/header"
 import Request from "../components/quotationCard"
@@ -11,15 +11,30 @@ import Quotation from "../components/partner/quotation"
 import Metrics from "../components/partner/metrics"
 import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
-
+import AuthContext from "../context/auth/authContex"
 
 
 
 
 function PartnerLayout(props){
-  
+      
       const partnerContext = useContext(PartnerContext);
-      const {isAuthenticated,profile}=partnerContext;
+      const authContext = useContext(AuthContext);
+      
+    
+  
+      const {isAuthenticated}=authContext
+
+      useEffect(()=>{
+        partnerContext.LOAD_PROFILE()
+
+      },[])
+
+      if(isAuthenticated){
+      }
+
+      
+      const {profile}=partnerContext;
       const [email,setEmail]=useState("")
 
 
@@ -34,8 +49,8 @@ function PartnerLayout(props){
 
       },2000)
 
-    
-        if(isAuthenticated==false){
+        console.log(isAuthenticated)
+        if(!isAuthenticated){
           return(<Redirect to="/login"/>)
         }else{
           return(

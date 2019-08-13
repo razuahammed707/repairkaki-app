@@ -6,11 +6,12 @@ import VerifyEmail from "./pages/home/verifyEmail"
 import Login from "./pages/home/login";
 import SignUp from "./pages/home/signup"
 import PartnerState from "./context/partner/partnerState";
+import AuthState from "./context/auth/authState"
 
 function App(){
   return ( 
+    <AuthState>
       <PartnerState>
-
         <Router>  
             <Switch>  
               <Route exact path="/" component={Home}/>
@@ -20,8 +21,8 @@ function App(){
               <Route path="/partner" component={PartnerLayout} /> 
             </Switch>  
           </Router>  
-          
       </PartnerState>
+      </AuthState>
       
     );
 }
