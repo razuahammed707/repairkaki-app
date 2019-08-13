@@ -81,7 +81,7 @@ const PartnerState=(props)=>{
         
             SET_LOADING(true);
 
-            var loginResponse=await axios.post("/v1/partner/login",{
+            var loginResponse= await axios.post("/v1/partner/login",{
                 email,
                 password
             });
@@ -93,8 +93,6 @@ const PartnerState=(props)=>{
             if(loginResponse.data.token){
                 localStorage.setItem("token",loginResponse.data.token);
                 setAuthentication(true);
-                localStorage.setItem("isAuthenticated",true)
-                // LOAD_PROFILE()
                 setAuthAlert("");
             }    
             SET_LOADING(false)

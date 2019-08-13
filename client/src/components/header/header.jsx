@@ -35,7 +35,7 @@ function Header(){
                     
                 </Dropdown>
                 <div className="profileImage">
-                <img src={profileURL} className="profileImage"/>
+                <img src={profileURL}/>
 
                 </div>
 
