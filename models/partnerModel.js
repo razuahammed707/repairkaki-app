@@ -1,33 +1,45 @@
 "use strict"
-const mongoose=require("mongoose");
+const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
-const bcrypt=require("bcrypt-nodejs")
+const bcrypt   = require('bcryptjs');
 
 
+// var salt = bcrypt.genSaltSync(saltRounds);
 
-const partnerSchema=Schema({
+const PartnerSchema=Schema({
     local:{
-        fullname:String,
-        email:String,
-        password:String,
-        createdAt:{
-            type:Date,
-            default:Date.now()
+        email:{
+            type:String,
         },
-        modifiedAt:Date,
+        password:{
+            type:String,
+        },
+        username:{
+            type:String,
+        },
+        role:{
+            type:String
+        }
+    },
+
+    createdAt:{
+        type:Date,
+        default:Date.now()
+    },
+    modifiedAt:{
+        type:Date,
+        default:Date.now()
     }
-    
-    
-})
-// Generating a has
 
-partnerSchema.methods.generateHash=function(password){
-    return bcrypt.hashSync(password,bcrypt.genSaltSync(8), null)
-};
+});
 
-// checking if password is valid 
-partnerSchema.methods.validPassword=function(password){
-    return bcrypt.compare(password,this.local.password)
+
+
+PartnerSchema.methods.comparePassword=function(password){ 
+    console.log(password,this.local.password)
+    return bcrypt.compareSync(password,this.local.password)
 }
 
-module.exports=mongoose.model("Partner",partnerSchema)
+
+
+module.exports=mongoose.model("Partner",PartnerSchema)
