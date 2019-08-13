@@ -52,7 +52,7 @@ router.post("/signup",(req,res,next)=>{
                 }
                 PartnerProfile.create(Profile,(err,profile)=>{
                     console.log("Profile is created for"+profile.username);
-                    var token=`http://localhost:3000/verify/${profile._id}`;
+                    var token=`https://${req.hostname}/verify/${profile._id}`;
                     email.verify(profile.email,profile.username,token)
                     
                 })
@@ -108,11 +108,10 @@ router.post("/verify",(req,res,next)=>{
 
 //RESEND EMAIL
 router.post("/resend",(req,res,next)=>{
-    var token=`http://localhost:3000/verify/${req.body._id}`;
     PartnerProfile.findById(req.body._id,(err,profile)=>{
         if(err) throw err;
         res.send(profile)
-        var token=`http://localhost:3000/verify/${profile._id}`;
+        var token=`http://${req.hostname}/verify/${profile._id}`;
         email.verify(profile.email,profile.username,token)
 
         console.log(profile)
