@@ -50,6 +50,15 @@
     color:#bf0e30;
 }
 
+.verifyMessage{
+    text-align: center;
+    padding-top: 40px;
+}
+.verifyMessage h1{
+    color:#f5385d;
+
+}
+
 .MenuactiveMain{
     background: #ddd;
     border-left: 3px solid #bf0e30;
@@ -117,6 +126,9 @@ select{
     display: block;
     margin-top: 20px;
 }
+.mobileMenu{
+    display: none;
+}
 .HeadingTitle{
     display: flex;
     align-items: center;
@@ -166,6 +178,9 @@ select{
 }
 
 @media only screen and (max-width: 800px) {
+    .mobileMenu{
+        display: block
+    }
     .profile-input-grid{
         grid-template-columns:  1fr;
         margin: 5px 0;
@@ -186,10 +201,26 @@ select{
         padding: 10px 0;
     }
     .menu img{
-        padding: 20px 0;
+        padding: 0;
+        padding-top: 10px;
     }
-  
-    .grid-4{
+    .homeNav img{
+        display: block;
+        margin: 0 auto;
+    }
+    .heading_Section{
+        padding: 0 20px;
+    }
+    .homeMenu{
+        justify-content: center;
+        margin-top:10px;
+        padding-bottom: 10px;
+    }
+    .grid-2,.grid-3,.grid-4,.homeNav{
         grid-template-columns: 1fr;
+
     }
+    
+
+
 }

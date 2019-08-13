@@ -56,7 +56,19 @@
     display: block;
     margin: 0 auto;
     margin-top: 30px;
+}
+.mobileMenu img{
+    width: 30px;;
+}
+.mobileMenu img{
+    padding: 11px 0 !important;
+}
 
+.hideMenu{
+    height: 0;
+}
+.showMenu{
+    height: auto;
 }
 .quotationBox label{
     font-weight: bold;
@@ -82,7 +94,7 @@
         padding: 10px 0;
     }
     .menu img{
-        padding: 20px 0;
+        /* padding: 11px 0; */
     }
   
     .grid-4{

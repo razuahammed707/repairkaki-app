@@ -1,4 +1,4 @@
-import React,{useState,useContext,useEffect} from "react";
+import React,{useState,useContext} from "react";
 import MainNav from "./mainNav"
 import Alert from 'react-bootstrap/Alert';
 import PartnerContext from "../../context/partner/partnerContext"
@@ -6,27 +6,29 @@ import {Redirect } from "react-router-dom";
 import Spinner from "../../components/spinners"
 
 
+
+
 function Login(){
 
     const partnerContext=useContext(PartnerContext)
     const {AuthAlert,isAuthenticated,loading}=partnerContext;
+
+
 
     if(partnerContext.AuthAlert=!""){
         setTimeout(() => {
             partnerContext.SET_AUTH_ALERT("")
         }, 2000);
     }
+    
 
-
-    const login=(e)=>{
+    const login=async(e)=>{
         e.preventDefault();
         const password= e.target.password.value;
         const email=e.target.email.value;
-        partnerContext.LOGIN(email,password);    
-        console.log(partnerContext)   
-        partnerContext.LOAD_PROFILE();
+        await partnerContext.LOGIN(email,password);    
+        await partnerContext.LOAD_PROFILE();
         partnerContext.SET_AUTH_ALERT("")   
-
     }
 
 

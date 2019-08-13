@@ -2,8 +2,6 @@ import React,{useReducer,useState} from "react"
 import PartnerContext from "./partnerContext";
 import PartnerReducer from "./partnerReducer";
 import axios from 'axios';
-import { async } from "q";
-
 
 
 const PartnerState=(props)=>{
@@ -13,16 +11,14 @@ const PartnerState=(props)=>{
     const [quotation,setQuotation]=useState([]);
     const [AuthAlert,setAuthAlert]=useState("");
     const [profile,setProfile]=useState({});
-    const [isAuthenticated,setAuthentication]=useState(true);
+    const [isAuthenticated,setAuthentication]=useState(false);
     const [isRegister,setRegister]=useState(false);
     
-
-
     const initialState={
         request:[
             {
                 _id:1233,
-                request_type:"Air Conditioner",
+                request_type:"Repair",
                 imageGallery:[
                     "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg",
                     "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
@@ -54,13 +50,10 @@ const PartnerState=(props)=>{
 
     // LOGOUT
     const LOGOUT=async()=>{
-        await axios.get("/v1/partner/logout");
-        localStorage.removeItem("token")
-        
-        return(
-            localStorage.setItem("isAuthenticated",false)
+        localStorage.removeItem("token");
+        setAuthentication(false)
+        localStorage.setItem("isAuthenticated",false)
 
-        )
         
     }
 
@@ -101,7 +94,7 @@ const PartnerState=(props)=>{
                 localStorage.setItem("token",loginResponse.data.token);
                 setAuthentication(true);
                 localStorage.setItem("isAuthenticated",true)
-                LOAD_PROFILE()
+                // LOAD_PROFILE()
                 setAuthAlert("");
             }    
             SET_LOADING(false)

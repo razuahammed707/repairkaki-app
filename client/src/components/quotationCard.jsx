@@ -15,7 +15,7 @@ function Quations(){
             {
                 request.map((item,index)=>{
                     return(
-                        <div>
+                        <div key={index}>
                         <div className="Quotation">
                         <div className="cardImages" >   
                             <img src={item.imageGallery[0]}/>

@@ -1,4 +1,4 @@
-import React,{Fragment,useContext,useEffect} from 'react';
+import React,{useContext,useEffect} from 'react';
 import Menu from "../components/menu/menu"
 import Header from "../components/header/header"
 import Request from "../components/quotationCard"
@@ -12,30 +12,15 @@ import Metrics from "../components/partner/metrics"
 
 
 
-var isLogin= localStorage.getItem("isAuthenticated");
 
 
 
 function PartnerLayout(props){
+  
       const partnerContext = useContext(PartnerContext);
       const {isAuthenticated}=partnerContext
-      console.log(isLogin)
-      if(isLogin===true){
-        partnerContext.setAuthentication(true)
-      }
-      if(isLogin===false){
-        partnerContext.setAuthentication(false)
-
-      }
-        
-      useEffect(()=>{
-        partnerContext.LOAD_PROFILE();
-      },[])
- 
-
       
-
-        if(isAuthenticated===false){
+        if(isAuthenticated==false){
           return(<Redirect to="/login"/>)
         }else{
           return(
@@ -52,7 +37,6 @@ function PartnerLayout(props){
               <Route path="/partner/appointment" component={Appointment}/>
               <Route path="/partner/metrics" component={Metrics}/>
 
-  
               <Route path="/partner/createQuote/:id" component={CreateQuotation}/>
             </div>
       
