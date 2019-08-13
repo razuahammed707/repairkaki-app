@@ -7,18 +7,20 @@ import Login from "./pages/home/login";
 import SignUp from "./pages/home/signup"
 import PartnerState from "./context/partner/partnerState";
 import AuthState from "./context/auth/authState"
+import NotFound from "./pages/home/notfound"
 
 function App(){
   return ( 
     <AuthState>
       <PartnerState>
-        <Router>  
+        <Router >  
             <Switch>  
               <Route exact path="/" component={Home}/>
               <Route path="/verify/:id" component={VerifyEmail}/>
               <Route path="/login" component={Login}/>
               <Route path="/signup" component={SignUp}/>
               <Route path="/partner" component={PartnerLayout} /> 
+              <Route path="/*" component={NotFound} /> 
             </Switch>  
           </Router>  
       </PartnerState>

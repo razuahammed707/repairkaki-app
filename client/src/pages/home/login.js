@@ -55,7 +55,6 @@ function Login(){
                     <input type="password" placeholder="passowrd" id="password" />
                     <div className="grid-2">
                     <input type="submit" value="Log In"/>
-                    <input type="submit" value="Forgot Password"/>
                     </div>
 
                     {(loading?(<div className="loadingSpinner"><Spinner/></div>):null)}
