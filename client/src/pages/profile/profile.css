@@ -7,7 +7,19 @@
     padding: 40px 20px;
     margin-top: 30px;
 }
-
+.profilePhotoUpdate{
+    margin-block: 20px;
+}
+.profilePhotoUpdate img{
+    width: 100px;
+}
+.profilePhotoUpdate input[type="file"]{
+    display: block;
+    margin-bottom: 10px;
+}
+.profilePhotoUpdate input[type="submit"]{
+    padding: 5px 50px;
+}
 .profile-input-grid{
     display: grid;
     grid-template-columns: 300px 1fr;

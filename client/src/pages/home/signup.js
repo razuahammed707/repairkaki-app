@@ -49,7 +49,7 @@ function SignUp(){
 
                 <form onSubmit={register}>
 
-                <h6>Complete to create your <span className="coloredText">ReapirKaki</span> account</h6>
+                <h6>Complete to create your <span className="coloredText">RepairKaki</span> account</h6>
                 {(AuthAlert===""||AuthAlert===true?null:(<Alert variant="danger">{AuthAlert}</Alert>))}
 
                 <input type="text" placeholder="Name" name="username" id="name" required/>
@@ -65,8 +65,8 @@ function SignUp(){
                 <Form.Group controlId="country" name="country">
                     <Form.Control as="select" required>
                     <option selected disabled>Select Country</option>
-                    <option value="singapore">Singapore</option>
-                    <option value="malaysia">Malaysia</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Malaysia">Malaysia</option>
                     </Form.Control>
                 </Form.Group>
                 <input type="password" placeholder="Password" name="password"  id="password" required/>

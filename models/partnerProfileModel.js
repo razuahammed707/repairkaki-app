@@ -13,15 +13,15 @@ const partnerProfileSchema=Schema({
     },
     username:{
         type:String,
-        default:" "
+        default:""
     },
     workshopName:{
         type:String,
-        default:" "
+        default:""
     },
     address:{
         type:String,
-        default:" "
+        default:""
     },
     country:{
         type:String,
@@ -30,19 +30,23 @@ const partnerProfileSchema=Schema({
     role:String,
     mobile:{
         type:String,
-        default:" "
+        default:""
+    },
+    allowEmailSMS:{
+        type:String,
+        default:"off"
     },
     phone:{
         type:String,
-        default:" "
+        default:""
     },
     email:{
         type:String,
-        default:" "
+        default:""
     },
     description:{
         type:String,
-        default:" "
+        default:""
     },
     emailVerified:{
         type:Boolean,

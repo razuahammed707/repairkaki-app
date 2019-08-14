@@ -1,13 +1,20 @@
-import React,{useContext,useState} from 'react';
+import React,{useContext,useState,useEffect} from 'react';
 import "./profile.css";
 import PartnerContext from "../../context/partner/partnerContext";
 import axios from "axios"
 import Spinner from "../../components/spinners";
+import { Alert } from 'react-bootstrap';
 
 
 function Profile(){
+
     const partnerContext = useContext(PartnerContext);
     const {profile,loading}=partnerContext;
+    const [profileUpdate,setProfileUpdate]=useState(false);
+
+    setTimeout(()=>{
+        setProfileUpdate(false)
+    },5000)
 
     const update_profile=async(e)=>{
         partnerContext.SET_LOADING(true)
@@ -15,9 +22,13 @@ function Profile(){
         const username=e.target.username.value;
         const workshopName=e.target.workshopName.value;
         const phone=e.target.phone.value;
+        const address=e.target.address.value;
         const mobile=e.target.mobile.value;
         const description=e.target.description.value;
         const allowEmailSMS=e.target.allowEmailSMS.value;
+        if(allowEmailSMS){
+            setProfileUpdate(true)
+        }
 
         var profileData={
             id:profile._id,
@@ -27,24 +38,69 @@ function Profile(){
                 phone,
                 mobile,
                 description,
-                allowEmailSMS
+                allowEmailSMS,
+                address
             }
         }
-        console.log(profileData);
-        var updatedProfile=await axios.post("/v1/partner/update",profileData);
+        await axios.post("/v1/partner/update",profileData);
         partnerContext.LOAD_PROFILE()
         partnerContext.SET_LOADING(false)
+        setProfileUpdate(true)
 
     }
 
+    const updateProfileImage = async(e)=>{
+        e.preventDefault();
+
+
+        if(e.target.partnerProfile.files[0]){
+            partnerContext.SET_LOADING(true)
+            var formData = new FormData();
+        
+            formData.append("image", e.target.partnerProfile.files[0]);
+            formData.set('_id', profile._id);
+    
+            var output=await axios.post('/v1/partner/upload', formData, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+                }
+                
+            })
+            partnerContext.LOAD_PROFILE()
+            partnerContext.SET_LOADING(false)
+            setProfileUpdate(true)
+
+        }
+ 
+        
+    }
+
+
     return(
         <div className="profileBox">
-            <h3>Workshop Details</h3>
+                            {(loading?(<div className="loadingSpinner"><Spinner/></div>):null)}
+                            {(profileUpdate?(<Alert variant="success">Profile Updated</Alert>):null)}
+
+
+            <h3>Workshop Profile</h3>
             <hr/>
+            <div className="profilePhotoUpdate">
+                   <img src={profile.profileURL}/>
+
+                   <form   onSubmit={updateProfileImage}>
+                   <input type="file" name="partnerProfile"/>
+                   <input type="submit" className="btn-info" value="Upload "/>
+                   </form>
+            </div>
+
+            <hr/>
+
+
             <form onSubmit={update_profile}>
+
                 <div className="profile-input-grid">
                     <label htmlFor="workshopName">Workshop Name</label>
-                    <input type="text" name="workshopName"  defaultValue={profile.workshopName} />
+                    <input type="text" name="workshopName"  defaultValue={profile.workshopName} required/>
                 </div>
                 <div className="profile-input-grid">
                     <label htmlFor="workshopName">Owner Name</label>
@@ -52,11 +108,11 @@ function Profile(){
                 </div>
                 <div className="profile-input-grid">
                     <label htmlFor="address">Address</label>
-                    <input type="text" name="address" defaultValue={profile.address} />
+                    <input type="text" name="address" defaultValue={profile.address} required/>
                 </div>
                 <div className="profile-input-grid">
                     <label htmlFor="mobile">Mobile</label>
-                    <input type="text" name="mobile" defaultValue={profile.mobile} />
+                    <input type="text" name="mobile" defaultValue={profile.mobile} required/>
                 </div>
                 <div className="profile-input-grid">
                     <label htmlFor="country">Country</label>
@@ -65,7 +121,7 @@ function Profile(){
 
                 <div className="profile-input-grid">
                     <label htmlFor="phone">Phone</label>
-                    <input type="text" name="phone" defaultValue={profile.phone} />
+                    <input type="text" name="phone" defaultValue={profile.phone} required />
                 </div>
 
 
@@ -76,16 +132,15 @@ function Profile(){
                 </div>
 
                 <div className="profile-input-grid">
-                    <label htmlFor="description">Description</label>
+                    <label htmlFor="description">Headline</label>
                     <div>
                     <textarea name="description" defaultValue={profile.description}></textarea>
                     </div>
                 </div>
                 <div>
-                <input type="checkbox" name="allowEmailSMS"/> I agree to allow RepairKaki to contact me by email and sms. 
+                <input type="checkbox" name="allowEmailSMS"  required/> I agree to allow RepairKaki to contact me by email and sms. 
                 </div>
                 <input type="submit" className="viewButton" value="UPDATE PROFILE"/>
-                {(loading?(<div className="loadingSpinner"><Spinner/></div>):null)}
 
             </form>
         </div>

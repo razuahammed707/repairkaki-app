@@ -29,7 +29,7 @@ function Header(){
                     <Dropdown.Menu>
                        <NavLink to="/">Home</NavLink>
                        <Dropdown.Divider />
-                       <NavLink to="/partner/profile">Upadate Profile</NavLink>
+                       <NavLink to="/partner/profile">Update Profile</NavLink>
 
                     </Dropdown.Menu>
                     

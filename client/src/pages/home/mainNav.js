@@ -11,9 +11,9 @@ function Login(){
 
            
                 <div className="homeMenu">
-                    <NavLink to="/">HOME</NavLink>
-                    <NavLink to="/login">LOGIN</NavLink>
-                    <NavLink to="/signup">SIGN UP</NavLink>
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/login">Log In</NavLink>
+                    <NavLink to="/signup">Sign Up</NavLink>
                 </div>    
             </div>
             </div>

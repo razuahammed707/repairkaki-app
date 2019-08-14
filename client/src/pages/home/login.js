@@ -49,7 +49,7 @@ function Login(){
             <div className="login">
             
                 <form onSubmit={login}>
-                    <h3>Login In to <span className="coloredText">ReapirKaki</span></h3>
+                    <h3>Login In to <span className="coloredText">RepairKaki</span></h3>
                     {(AuthAlert===""||AuthAlert===true?null:(<Alert variant="danger">{AuthAlert}</Alert>))}
                     <input type="text" placeholder="Email" id="email"/>
                     <input type="password" placeholder="passowrd" id="password" />

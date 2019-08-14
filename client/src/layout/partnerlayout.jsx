@@ -20,9 +20,49 @@ function PartnerLayout(props){
       
       const partnerContext = useContext(PartnerContext);
       const authContext = useContext(AuthContext);
+      const {profile}=partnerContext;
+      const [email,setEmail]=useState("")
+      const [profileUpdate,setProfileUpdate]=useState(true);
+
+      const checkProfile=()=>{
+        var count=0;
+        const {
+          workshopName,
+          phone,
+          mobile,
+          allowEmailSMS,
+          address
+        }=profile;
+
+        if(address===""){
+          count++;
+        }
+     
+        if(workshopName===""){
+          count++;
+        }
+        if(mobile===""){
+          count++;
+        }
+        if(phone===""){
+          count++;
+        }
+        if(allowEmailSMS==="OFF"){
+          count++;
+        }
+
+        return count;
+      }
       
-    
-  
+      
+      useEffect(()=>{
+        if(checkProfile()===0){
+          setProfileUpdate(false)
+        }
+
+      })
+     
+
       const {isAuthenticated}=authContext
 
       useEffect(()=>{
@@ -34,8 +74,7 @@ function PartnerLayout(props){
       }
 
       
-      const {profile}=partnerContext;
-      const [email,setEmail]=useState("")
+   
 
 
       var resendEmail=async()=>{
@@ -49,6 +88,9 @@ function PartnerLayout(props){
 
       },2000)
 
+
+      
+
         console.log(isAuthenticated)
         if(!isAuthenticated){
           return(<Redirect to="/login"/>)
@@ -61,7 +103,9 @@ function PartnerLayout(props){
       
       
             <div className="contentBody">
-            {(profile.emailVerified?null:(<Alert variant="danger">Please check inbox to verify email. if not found <NavLink onClick={resendEmail}>Resend</NavLink> {email}</Alert>))}
+            {(!profileUpdate?null:(<Alert variant="danger">Please <NavLink to="/partner/profile">update</NavLink> your profile</Alert>))}
+
+            {(profile.emailVerified?null:(<Alert variant="danger">Please check your inbox/spam folder to verify your email address. if not found <NavLink onClick={resendEmail}>Resend</NavLink> {email}</Alert>))}
 
             {/* {(profile.emailVerified?null:(<Alert variant="danger">Please update your profile <NavLink to="/partner/profile">go to profile</NavLink></Alert>))} */}
 

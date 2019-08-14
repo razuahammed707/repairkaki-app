@@ -6,9 +6,14 @@ const PartnerProfile=require("../../models/partnerProfileModel");
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcryptjs');
 const passport=require("passport")
-var email=require("../../email/emailSetting");
+const email=require("../../email/emailSetting");
+const PartnerController = require("../../controllers/partner/partnerProfile");
+const S3 = require("../../config/s3")
 
-const PartnerController = require("../../controllers/partner/partnerProfile")
+
+
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,11 +22,22 @@ router.get('/', function(req, res, next) {
 
 // UPDATE
 router.post('/update', function(req, res, next) {
+    console.log(req.body.profile)
     PartnerProfile.findByIdAndUpdate(req.body.id,req.body.profile,(err,data)=>{
         res.send(data)
         console.log(data)
     })
 });
+
+// UPDATE
+router.post('/upload', S3.upload.array('image', 1),function(req, res, next) {
+    console.log()
+    PartnerProfile.findByIdAndUpdate(req.body._id,{profileURL:req.files[0].location},(err,data)=>{
+        res.send(data)
+    })
+});
+
+
 
 // SIGN UP
 router.post("/signup",(req,res,next)=>{

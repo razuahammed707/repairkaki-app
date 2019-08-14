@@ -20,6 +20,7 @@ function Menu(props){
 
     const logout=()=>{
         authContext.LOGOUT();
+
     }
 
     const showMobileMenu=(e)=>{

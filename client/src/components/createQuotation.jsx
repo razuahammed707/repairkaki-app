@@ -4,7 +4,6 @@ import {Form,Carousel,Button,ButtonToolbar} from "react-bootstrap";
 function CreateQuotation({match}){
     return(
       <div className="quotationBox">
-        <p>Quotation id: {match.params.id}</p>
         <Carousel>
                 <Carousel.Item>
                     <img
@@ -36,9 +35,10 @@ function CreateQuotation({match}){
             </Form.Group>
             
             <ButtonToolbar>
-                <Button variant="primary" size="sm">
+
+                <Button variant="primary" size="sm" className="quotationSubmit">
                     SUBMIT NOW
-                </Button>
+                </Button> 
                 <Button variant="danger" size="sm">
                     REJECT
                 </Button>
