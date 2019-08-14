@@ -46,6 +46,7 @@ function Profile(){
         partnerContext.LOAD_PROFILE()
         partnerContext.SET_LOADING(false)
         setProfileUpdate(true)
+        window.scrollTo(0, 0)
 
     }
 
