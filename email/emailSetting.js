@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 var template=require("./templates/emailVerification")
 
 // async..await is not allowed in global scope, must use a wrapper
-async function main(email,user,token){
+async function main(email,user,token,template){
 
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing

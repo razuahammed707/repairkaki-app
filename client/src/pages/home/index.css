@@ -14,7 +14,12 @@
     margin: 0 auto;
     margin-top: 20px;
 }
-
+.login_forget_menu{
+    display: flex;
+}
+.login_forget_menu input{
+    margin: 0;
+}
 .mainHomeNav{
     box-shadow: 0 2px 10px #ddd;
 
@@ -104,9 +109,11 @@ select{
     padding: 5px !important;
     color:#777777;
     border-radius: 0;
-
 }
-.login form input[type="submit"]{
+.btn-forgot a:hover{
+    color:none;
+}
+.login form input[type="submit"],.btn-forgot{
     display: block;
     margin: 0 auto;    
     padding: 5px 30px;

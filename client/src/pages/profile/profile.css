@@ -8,17 +8,34 @@
     margin-top: 30px;
 }
 .profilePhotoUpdate{
-    margin-block: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0 auto
 }
 .profilePhotoUpdate img{
-    width: 100px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #ea2147;
+    display: block;
+    margin: 0 auto;
+}
+.browseFIle{
+    background:  #ddd;
 }
 .profilePhotoUpdate input[type="file"]{
     display: block;
-    margin-bottom: 10px;
+    margin: 10px auto;
 }
 .profilePhotoUpdate input[type="submit"]{
     padding: 5px 50px;
+    display: block;
+    margin: 0 auto;
+    background: #ea2147;
+    color:#fff;
+    border: none;
+
 }
 .profile-input-grid{
     display: grid;

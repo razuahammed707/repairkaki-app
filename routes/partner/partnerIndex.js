@@ -86,6 +86,24 @@ router.get("/logout",(req,res,next)=>{
     res.send({message:"Logout"})
 })
 
+// FORGOT PASSWORD;
+
+router.post("/forgot",(req,res)=>{
+    
+    console.log(req.body)
+    Partner.findOne({"local.email":req.body.email},(err,partner)=>{
+        console.log(partner)
+        if(partner){
+            res.send(partner);
+
+        }else{
+            res.send({message:"User Not Found"})
+        }
+
+    })
+
+})
+
 
 
 //LOGIN 
@@ -113,6 +131,7 @@ router.post('/login',(req, res, next) => {
 
 });
 
+
 //VERIFY EMAIL
 router.post("/verify",(req,res,next)=>{
     PartnerProfile.findByIdAndUpdate(req.body._id,{emailVerified:true},(err,user)=>{
@@ -120,7 +139,7 @@ router.post("/verify",(req,res,next)=>{
         res.send(user)
         console.log(user)
     })
-})
+});
 
 //RESEND EMAIL
 router.post("/resend",(req,res,next)=>{

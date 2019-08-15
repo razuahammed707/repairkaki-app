@@ -5,7 +5,7 @@ import PartnerContext from "../../context/partner/partnerContext"
 // import PartnerContext from "../../context/partner/partnerContext"
 import AuthContext from "../../context/auth/authContex"
 
-import {Redirect } from "react-router-dom";
+import {Redirect,NavLink } from "react-router-dom";
 import Spinner from "../../components/spinners"
 
 
@@ -53,8 +53,10 @@ function Login(){
                     {(AuthAlert===""||AuthAlert===true?null:(<Alert variant="danger">{AuthAlert}</Alert>))}
                     <input type="text" placeholder="Email" id="email"/>
                     <input type="password" placeholder="passowrd" id="password" />
-                    <div className="grid-2">
+                    <div className="login_forget_menu">
                     <input type="submit" value="Log In"/>
+
+                    <NavLink to="/forgot">Forget Password</NavLink>
                     </div>
 
                     {(loading?(<div className="loadingSpinner"><Spinner/></div>):null)}

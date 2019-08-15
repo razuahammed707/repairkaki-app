@@ -11,7 +11,9 @@ function Profile(){
     const partnerContext = useContext(PartnerContext);
     const {profile,loading}=partnerContext;
     const [profileUpdate,setProfileUpdate]=useState(false);
+    const [preview,setPreview]=useState()
 
+ 
     setTimeout(()=>{
         setProfileUpdate(false)
     },5000)
@@ -50,9 +52,22 @@ function Profile(){
 
     }
 
+
+// Show Preview 
+    const showPreview=(e)=>{
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        reader.onloadend = () => {
+            setPreview(reader.result)
+        }
+        reader.readAsDataURL(file)
+
+    }
+
+    //Update Profile Image
     const updateProfileImage = async(e)=>{
         e.preventDefault();
-
 
         if(e.target.partnerProfile.files[0]){
             partnerContext.SET_LOADING(true)
@@ -64,18 +79,13 @@ function Profile(){
             var output=await axios.post('/v1/partner/upload', formData, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
-                }
-                
+                }      
             })
             partnerContext.LOAD_PROFILE()
             partnerContext.SET_LOADING(false)
             setProfileUpdate(true)
-
-        }
- 
-        
+        } 
     }
-
 
     return(
         <div className="profileBox">
@@ -86,11 +96,11 @@ function Profile(){
             <h3>Workshop Profile</h3>
             <hr/>
             <div className="profilePhotoUpdate">
-                   <img src={profile.profileURL}/>
+                   <img src={(preview?preview:profile.profileURL)}/>
 
                    <form   onSubmit={updateProfileImage}>
-                   <input type="file" name="partnerProfile"/>
-                   <input type="submit" className="btn-info" value="Upload "/>
+                   <input type="file" name="partnerProfile" onChange={showPreview} className="browseFIle"/>
+                   <input type="submit"  value="Upload "/>
                    </form>
             </div>
 
@@ -139,7 +149,7 @@ function Profile(){
                     </div>
                 </div>
                 <div>
-                <input type="checkbox" name="allowEmailSMS"  required/> I agree to allow RepairKaki to contact me by email and sms. 
+                <input type="checkbox" name="allowEmailSMS"  defaultChecked required/> I agree to allow RepairKaki to contact me by email and sms. 
                 </div>
                 <input type="submit" className="viewButton" value="UPDATE PROFILE"/>
 

@@ -1,18 +1,25 @@
-import React,{useReducer,useState} from "react"
+import React,{useReducer,useState,useContext} from "react"
 import PartnerContext from "./partnerContext";
 import PartnerReducer from "./partnerReducer";
 import axios from 'axios';
 
+import AuthContext from "../auth/authContex"
+
 
 const PartnerState=(props)=>{
+
+    const authContext=useContext(AuthContext)
 
     const [loading,setLoading]=useState(false);
     const [request,setRequest]=useState([]);
     const [quotation,setQuotation]=useState([]);
     const [AuthAlert,setAuthAlert]=useState("");
     const [profile,setProfile]=useState({});
-    const [isAuthenticated,setAuthentication]=useState(false);
+    // const [isAuthenticated,setAuthentication]=useState(false);
     const [isRegister,setRegister]=useState(false);
+
+
+
     
     const initialState={
         request:[
@@ -62,13 +69,19 @@ const PartnerState=(props)=>{
     const REGISTER=async(user)=>{
         SET_LOADING(true)
         var registration=await axios.post("/v1/partner/signup",user);
+
         if(registration.data.message){
             setAuthAlert(registration.data.message);
-            setRegister(false);
+            setRegister(false);  
+            SET_LOADING(false)       
+   
+            return false
+
         }else{
             setRegister(true);
+            SET_LOADING(false)       
+            return true
         }
-        SET_LOADING(false)
         
 
     
