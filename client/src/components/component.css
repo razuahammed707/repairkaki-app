@@ -4,8 +4,71 @@
 }
 .noData h1{
     color:#f5385d;
+}
+.listItem{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr  1fr;
+    height: 100px;
+    box-shadow: 0 0 10px #ddd;
+    margin: 15px 0;
 
+}
+.ViewType{
+    display: flex;
+    align-items: center;
+}
+.ViewType p{
+    margin-right: 10px;
+    font-weight: bold;
+}
+.listItem .carModel{
+    justify-content: left;
+}
+.listImage img {
+    height: 100px;
 }
 .quotationSubmit{
     margin-right: 10px;
+}
+
+.ListButoon{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.carModel{
+    text-align: left
+}
+.listButton{
+    color:#fff;
+    width: 200px;
+    text-align: center;
+    display: block;
+    background: #f5385d;
+    padding: 10px 0;
+}
+
+@media only screen and (max-width: 800px) {
+    .listItem{
+        grid-template-columns: 1.5fr 1fr;
+        height: auto;
+        text-align: center
+    }
+    .listButton{
+        width: 100%;
+    }
+    .ListButoon{
+        display: block;
+    }
+    .carModel{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-left: 20px;
+    }
+    .listImage img {
+        width: 100%;
+        height: auto;
+    }
+
 }

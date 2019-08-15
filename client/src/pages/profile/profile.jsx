@@ -6,12 +6,25 @@ import Spinner from "../../components/spinners";
 import { Alert } from 'react-bootstrap';
 
 
+        
+
+
 function Profile(){
 
     const partnerContext = useContext(PartnerContext);
     const {profile,loading}=partnerContext;
     const [profileUpdate,setProfileUpdate]=useState(false);
-    const [preview,setPreview]=useState()
+    const [preview,setPreview]=useState();
+    const [mobile,setMobile]=useState();
+
+    useEffect(()=>{
+        if(profile.country==="Malaysia"){
+            setMobile("+60")
+        }
+        if(profile.country==="Singapore"){
+            setMobile("+65")
+        }
+    })
 
  
     setTimeout(()=>{
@@ -123,7 +136,11 @@ function Profile(){
                 </div>
                 <div className="profile-input-grid">
                     <label htmlFor="mobile">Mobile</label>
-                    <input type="text" name="mobile" defaultValue={profile.mobile} required/>
+                    <div className="mobile_box">
+                        <span style={{position:"absolute",top:"1px"}}>{mobile}</span>
+                        <input type="text" name="mobile" defaultValue={profile.mobile} required/>
+
+                    </div>
                 </div>
                 <div className="profile-input-grid">
                     <label htmlFor="country">Country</label>

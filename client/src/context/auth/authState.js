@@ -64,7 +64,8 @@ const AuthState=(props)=>{
                 isAuthenticated,
                 loading,
                 LOGIN,setAuthAlert,
-                LOGOUT
+                LOGOUT,
+                SET_LOADING
 
             }
         }>

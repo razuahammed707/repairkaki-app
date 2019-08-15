@@ -12,6 +12,17 @@
     grid-template-columns: 1fr;
     margin: 0 auto
 }
+
+.mobile_box{
+    position: relative;
+    align-items: center
+};
+.mobile_box p{
+    position: absolute;
+}
+.mobile_box input{
+    padding-left: 35px;
+}
 .profilePhotoUpdate img{
     width: 150px;
     height: 150px;

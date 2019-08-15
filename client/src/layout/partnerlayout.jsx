@@ -1,7 +1,9 @@
 import React,{useContext,useState,useEffect} from 'react';
 import Menu from "../components/menu/menu"
 import Header from "../components/header/header"
-import Request from "../components/quotationCard"
+import RequestGrid from "../components/quotationGrid"
+
+
 import CreateQuotation from "../components/createQuotation";
 import {Route,Redirect,NavLink } from "react-router-dom";
 import Profile from "../pages/profile/profile"
@@ -105,11 +107,10 @@ function PartnerLayout(props){
             <div className="contentBody">
             {(!profileUpdate?null:(<Alert variant="danger">Please <NavLink to="/partner/profile">update</NavLink> your profile</Alert>))}
 
-            {(profile.emailVerified?null:(<Alert variant="danger">Please check your inbox/spam folder to verify your email address. if not found <NavLink onClick={resendEmail}>Resend</NavLink> {email}</Alert>))}
+            {(profile.emailVerified?null:(<Alert variant="danger">Please check your inbox/spam folder to verify your email address. <NavLink to="/partner/request" onClick={resendEmail}>Resend</NavLink> {email}</Alert>))}
 
-            {/* {(profile.emailVerified?null:(<Alert variant="danger">Please update your profile <NavLink to="/partner/profile">go to profile</NavLink></Alert>))} */}
 
-              <Route path="/partner/request" component={Request}/>
+              <Route path="/partner/request" component={RequestGrid}/>
               <Route path="/partner/profile" component={Profile}/>
               <Route path="/partner/submitted_quotation" component={Quotation}/>
               <Route path="/partner/appointment" component={Appointment}/>

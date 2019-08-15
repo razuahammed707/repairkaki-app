@@ -69,7 +69,12 @@ router.post("/signup",(req,res,next)=>{
                 PartnerProfile.create(Profile,(err,profile)=>{
                     console.log("Profile is created for"+profile.username);
                     var token=`https://${req.hostname}/verify/${profile._id}`;
-                    email.verify(profile.email,profile.username,token)
+                    const user={
+                        name:profile.username,
+                        email:profile.email,
+                        token
+                    }
+                    email.verify(user,"verify")
                     
                 })
                 res.send(partner)
@@ -87,14 +92,32 @@ router.get("/logout",(req,res,next)=>{
 })
 
 // FORGOT PASSWORD;
+router.post("/reset-password",(req,res,next)=>{
+    const password=bcrypt.hashSync(req.body.password,bcrypt.genSaltSync(10));
+    console.log(req.body)
 
-router.post("/forgot",(req,res)=>{
+    Partner.findByIdAndUpdate(req.body._id,{"local.password":password},(err,user)=>{
+        if(err) throw err;
+        res.send(user)
+    })
+})
+
+router.post("/forgot",(req,res,next)=>{
     
     console.log(req.body)
     Partner.findOne({"local.email":req.body.email},(err,partner)=>{
         console.log(partner)
         if(partner){
             res.send(partner);
+            var token=`http://${req.hostname}/reset-verification/${partner._id}`;
+
+            const user={
+                name:partner.local.username,
+                email:partner.local.email,
+                token
+    
+            }
+            email.verify(user,"reset_password")
 
         }else{
             res.send({message:"User Not Found"})
@@ -143,11 +166,21 @@ router.post("/verify",(req,res,next)=>{
 
 //RESEND EMAIL
 router.post("/resend",(req,res,next)=>{
-    PartnerProfile.findById(req.body._id,(err,profile)=>{
+    
+        PartnerProfile.findById(req.body._id,(err,profile)=>{
         if(err) throw err;
         res.send(profile)
+        if(null){
+            res.send({message:"user not found"})
+        }
         var token=`http://${req.hostname}/verify/${profile._id}`;
-        email.verify(profile.email,profile.username,token)
+        const user={
+            name:profile.username,
+            email:profile.email,
+            token
+
+        }
+        email.verify(user,"verify")
 
         console.log(profile)
     })

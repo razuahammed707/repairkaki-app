@@ -57,7 +57,7 @@ function Menu(props){
                     </li>
 
                     <li>
-                    <NavLink to="/" className="logoutBtn" onClick={logout}>Logout</NavLink>
+                    <NavLink to="/"  onClick={logout}>Logout</NavLink>
                     </li>
 
                 </ul>  

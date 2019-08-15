@@ -46,9 +46,12 @@ function SignUp(props){
             await authContext.LOGIN(email,password);
             props.history.push('/login')
         }
+        partnerContext.SET_AUTH_ALERT("")
+
     }
 
     if(authContext.isAuthenticated==="true"){
+        partnerContext.SET_AUTH_ALERT("")
         return(<Redirect to="/partner/request/"/>)
     }else{
         return(

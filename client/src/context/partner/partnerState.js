@@ -34,6 +34,30 @@ const PartnerState=(props)=>{
                 carModel:"Audi A8",
                 description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique."
     
+            },
+            {
+                _id:1233,
+                request_type:"Repair",
+                imageGallery:[
+                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg",
+                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
+                ],
+                title:"Conduct at an replied removal an among",
+                carModel:"Audi A8",
+                description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique."
+    
+            },
+            {
+                _id:1233,
+                request_type:"Repair",
+                imageGallery:[
+                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg",
+                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
+                ],
+                title:"Conduct at an replied removal an among",
+                carModel:"Audi A8",
+                description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique."
+    
             }]
     }
     // Set Auth Alert

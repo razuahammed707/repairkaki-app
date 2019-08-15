@@ -64,6 +64,7 @@ p,h1,h2,h3,h4,h5,h6{
     font-size: 15px;
 }
 
+
 /* Quoations css */
 .carModel{
 text-align: center;
@@ -78,8 +79,12 @@ text-align: center;
 .cardImages img{
     width: 100%;
 }
+.main_header{
+    background: #fff;
+}
 .contentBody{
     margin: 10px;
+    background: #fff;
 }
 .quatation_date{
     text-align: center;

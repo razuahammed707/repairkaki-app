@@ -52,7 +52,7 @@
     -webkit-line-clamp:3;
 }
 .quotationBox{
-    width: 500px;
+    max-width: 500px;
     display: block;
     margin: 0 auto;
     margin-top: 30px;
@@ -96,7 +96,13 @@
     .menu img{
         /* padding: 11px 0; */
     }
-  
+    .righ-side{
+        display: block;
+        margin: 0 auto;
+    }
+    .clientName{
+        display: none;
+    }
     .grid-4{
         grid-template-columns: 1fr;
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form,Carousel,Button,ButtonToolbar} from "react-bootstrap";
+import {NavLink} from "react-router-dom";
 
 function CreateQuotation({match}){
     return(
@@ -36,12 +37,17 @@ function CreateQuotation({match}){
             
             <ButtonToolbar>
 
-                <Button variant="primary" size="sm" className="quotationSubmit">
-                    SUBMIT NOW
-                </Button> 
+                <NavLink to="/partner/request" className="quotationSubmit">
+                    <Button variant="success" size="sm">
+                        SUBMIT NOW
+                    </Button>    
+                 </NavLink>
+
+                <NavLink to="/partner/request">
                 <Button variant="danger" size="sm">
                     REJECT
-                </Button>
+                </Button>    
+                </NavLink> 
             </ButtonToolbar>
             
         </Form>    

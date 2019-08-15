@@ -9,6 +9,7 @@ import PartnerState from "./context/partner/partnerState";
 import AuthState from "./context/auth/authState";
 import NotFound from "./pages/home/notfound";
 import Forgot from "./pages/home/forgot";
+import ResetVerification from "./pages/home/reset-verification"
 
 function App(){
   return ( 
@@ -20,6 +21,8 @@ function App(){
               <Route path="/verify/:id" component={VerifyEmail}/>
               <Route path="/login" component={Login}/>
               <Route path="/forgot" component={Forgot}/>
+              <Route path="/reset-verification/:id" component={ResetVerification}/>
+
               <Route path="/signup" component={SignUp}/>
               <Route path="/partner" component={PartnerLayout} /> 
               <Route path="/*" component={NotFound} /> 
