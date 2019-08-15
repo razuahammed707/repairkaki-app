@@ -100,7 +100,7 @@
         margin: 0 auto;
     }
     .clientName{
-        display: 
+        display: none;
     }
     .grid-4{
         grid-template-columns: 1fr;
