@@ -15,7 +15,7 @@ function GridView(){
                          <div key={index}>
                          <div className="Quotation">
                          <div className="cardImages" >   
-                             <img src={item.imageGallery[0]}/>
+                             <img src={item.imageGallery[0]} alt="item-gallery"/>
                              <div className="Quotation_type">
                                  <p>{item.request_type}</p>
                              </div>
@@ -26,7 +26,7 @@ function GridView(){
                          </div>
                          <hr/>
                          <div className="carModel">
-                             <img src={CarIcon}/>
+                             <img src={CarIcon} alt="car Icon"/>
                              <p>{item.carModel}</p>
                          </div>
                          <NavLink to={`createQuote/${item._id}`} className="viewButton">View</NavLink>   </div>

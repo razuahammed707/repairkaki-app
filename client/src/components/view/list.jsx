@@ -14,7 +14,7 @@ function ListView(){
              return(
                  <div key={index} className="listItem">
                         <div className="listImage" >   
-                            <img src={item.imageGallery[0]}/>
+                            <img src={item.imageGallery[0]} alt="ListGallery"/>
                         </div>
 
                         <div className="carModel">
@@ -22,7 +22,7 @@ function ListView(){
                          </div>
 
                         <div className="carModel">
-                            <img src={CarIcon}/>
+                            <img src={CarIcon} alt="car Icon"/>
                             <p>{item.carModel}</p>
                         </div>
 

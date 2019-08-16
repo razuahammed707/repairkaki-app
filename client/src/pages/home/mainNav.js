@@ -7,7 +7,7 @@ function Login(){
  
             <div className="mainHomeNav">
             <div className="homeNav heading_Section">
-            <NavLink to="/" >  <img src={ReapairKakiLogo}/></NavLink>
+            <NavLink to="/" >  <img src={ReapairKakiLogo} alt="RepairKaki Logo"/></NavLink>
 
            
                 <div className="homeMenu">

@@ -33,6 +33,7 @@ p,h1,h2,h3,h4,h5,h6{
     grid-template-columns: 20px 40px;
     align-items: center;
     grid-gap: 12px;
+    width: 100px;
 }
 
 .profileImage img{
@@ -142,3 +143,13 @@ text-align: center;
 .noRequest{
     text-align: center;
 }
+
+
+@media only screen and (max-width: 800px) {
+    .profileSection{
+        width: 110px;
+    }
+
+}
+
+

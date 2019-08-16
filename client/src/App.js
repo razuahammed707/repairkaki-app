@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch,Redirect } from "react-router-dom";
 import PartnerLayout from "./layout/partnerlayout";
 import Home from "./pages/home/index";

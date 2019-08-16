@@ -52,7 +52,7 @@ function Login(){
                     <h3>Login In to <span className="coloredText">RepairKaki</span></h3>
                     {(AuthAlert===""||AuthAlert===true?null:(<Alert variant="danger">{AuthAlert}</Alert>))}
                     <input type="text" placeholder="Email" id="email"/>
-                    <input type="password" placeholder="passowrd" id="password" />
+                    <input type="password" placeholder="Password" id="password" />
                     <div className="login_forget_menu">
                     <input type="submit" value="Log In"/>
 

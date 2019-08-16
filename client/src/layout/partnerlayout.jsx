@@ -58,6 +58,7 @@ function PartnerLayout(props){
       
       
       useEffect(()=>{
+        
         if(checkProfile()===0){
           setProfileUpdate(false)
         }
@@ -67,13 +68,16 @@ function PartnerLayout(props){
 
       const {isAuthenticated}=authContext
 
+  
       useEffect(()=>{
         partnerContext.LOAD_PROFILE()
 
       },[])
+      
 
       if(isAuthenticated){
       }
+      
 
       
    
@@ -82,6 +86,7 @@ function PartnerLayout(props){
       var resendEmail=async()=>{
         const resend= await axios.post("/v1/partner/resend",{_id:profile._id});
         setEmail("Email sent")
+        return(resend)
 
       }
       //remove setEmail

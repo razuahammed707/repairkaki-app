@@ -4,7 +4,6 @@ import React,{useState,useContext} from "react";
 import Alert from 'react-bootstrap/Alert';
 import AuthContext from "../../context/auth/authContex";
 import Spinner from "../../components/spinners";
-import {Redirect,NavLink } from "react-router-dom";
 
 
 function ResetPassword(props){

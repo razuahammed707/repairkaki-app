@@ -13,10 +13,10 @@ function Forgot(){
         var resposne=await axios.post("/v1/partner/forgot",{email:e.target.email.value});
         console.log(resposne)
         if(resposne.data.message){
-            setAlert(resposne.data.message)
+            setAlert("User not found. Sign up now.")
         }
         else{
-            setAlert("Check your email, We've sent an email. Click the link in the email to reset your password.  ")
+            setAlert("We’ve dropped you an email. Click the link to reset your password")
 
         }
 

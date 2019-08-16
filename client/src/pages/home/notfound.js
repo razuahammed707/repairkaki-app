@@ -7,7 +7,7 @@ function VerifyEmail({match}){
 
     const verifyEmail=async()=>{
         const verifiedResponse= await axios.post("/v1/partner/verify",{_id:match.params.id});
-        return
+        return(verifiedResponse)
     }
     verifyEmail();
     return(<div>

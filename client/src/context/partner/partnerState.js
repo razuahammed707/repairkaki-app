@@ -1,18 +1,17 @@
-import React,{useReducer,useState,useContext} from "react"
+import React,{useState} from "react"
 import PartnerContext from "./partnerContext";
-import PartnerReducer from "./partnerReducer";
 import axios from 'axios';
 
-import AuthContext from "../auth/authContex"
+// import AuthContext from "../auth/authContex"
 
 
 const PartnerState=(props)=>{
 
-    const authContext=useContext(AuthContext)
+    // const authContext=useContext(AuthContext)
 
     const [loading,setLoading]=useState(false);
-    const [request,setRequest]=useState([]);
-    const [quotation,setQuotation]=useState([]);
+    // const [request,setRequest]=useState([]);
+    // const [quotation,setQuotation]=useState([]);
     const [AuthAlert,setAuthAlert]=useState("");
     const [profile,setProfile]=useState({});
     // const [isAuthenticated,setAuthentication]=useState(false);
@@ -141,11 +140,11 @@ const PartnerState=(props)=>{
     
     
 
-    const [state,dispatch]=useReducer(PartnerReducer,initialState)
+    // const [state,dispatch]=useReducer(PartnerReducer,initialState)
 
     return(
         <PartnerContext.Provider value={{
-            ...state,
+            ...initialState,
             // isAuthenticated,
             // LOGIN,
             AuthAlert,
