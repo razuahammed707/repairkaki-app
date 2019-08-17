@@ -3,7 +3,9 @@ import repairkakiLogo from "./repairkaki_logo.png"
 import { BrowserRouter as Redirect, NavLink} from "react-router-dom";
 import "./menu.css";
 import MenuIcon from "./menu.svg";
-import CancelIcon from './cancel.svg'
+import CancelIcon from './cancel.svg';
+
+import Header from "../header/header"
 
 
 
@@ -20,7 +22,6 @@ function Menu(props){
 
     const logout=()=>{
         authContext.LOGOUT();
-
     }
 
     const showMobileMenu=(e)=>{
@@ -36,12 +37,19 @@ function Menu(props){
     
     return(
         <div className="menu">
-            <NavLink to="/"><img src={repairkakiLogo}/></NavLink>
+                <NavLink to="/"><img src={repairkakiLogo}/></NavLink>
                 <div className="mobileMenu" onClick={showMobileMenu}>
                     <img src={icon}/>
                 </div>
+                
                 <div className={menu} id="desktopMenu">
+
                 <ul>
+                    <li>
+                    <div>
+                    <Header css={{name:"mobileView"}}/>
+                    </div>
+                    </li>
                     <li>
                     <NavLink to="/partner/request" activeClassName="Menuactive">Request</NavLink>
                     </li>

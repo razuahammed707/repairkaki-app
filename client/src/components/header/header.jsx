@@ -8,13 +8,13 @@ import { Dropdown } from 'react-bootstrap';
 import PartnerContext from "../../context/partner/partnerContext";
 
 
-function Header(){
+function Header(props){
 
     const partnerContext =useContext(PartnerContext);
     const {username,profileURL}=partnerContext.profile; 
 
     return(
-        <div className="header">
+        <div className={"header "+props.css.name}>
     
             <div className="righ-side">
                 <div className="profileSection">

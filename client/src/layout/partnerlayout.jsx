@@ -106,7 +106,7 @@ function PartnerLayout(props){
             <div className="grid-2-menu">
             <Menu/>
             <div className="main_header">
-            <Header/>
+            <Header css={{name:"desktopView"}}/>
       
       
             <div className="contentBody">

@@ -9,7 +9,7 @@ const partnerProfileSchema=Schema({
     },
     profileURL:{
         type:String,
-        default:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+        default:"https://repairkaki.s3-ap-southeast-1.amazonaws.com/public/blank-profile-picture-973460__340.png"
     },
     username:{
         type:String,

@@ -209,7 +209,7 @@ select{
     }
     .menu img{
         padding: 0;
-        padding-top: 10px;
+        padding-top: 0;
     }
     .homeNav img{
         display: block;

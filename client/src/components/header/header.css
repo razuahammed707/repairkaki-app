@@ -143,12 +143,36 @@ text-align: center;
 .noRequest{
     text-align: center;
 }
-
-
+.desktopView{
+    display: block;
+}
+.mobileView{
+    display: none;
+}
 @media only screen and (max-width: 800px) {
     .profileSection{
         width: 110px;
     }
+    .arrowIcon{
+        position: static;
+    }
+
+    .desktopView{
+        display: none;
+    }
+    .mobileView{
+        display: flex;
+    }
+    .header{
+        position: static;
+        box-shadow: none;
+    }
+    .mobileView .arrowIcon button img{
+       margin-top:15px;
+        width: 15px;
+    }
+
+    
 
 }
 

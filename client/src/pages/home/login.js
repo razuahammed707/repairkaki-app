@@ -35,7 +35,7 @@ function Login(){
     if(authContext.AuthAlert=!""){
         setTimeout(() => {
             authContext.setAuthAlert("")
-        }, 2000);
+        }, 4000);
     }
 
     if(isAuthenticated){
