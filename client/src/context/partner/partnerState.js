@@ -94,7 +94,6 @@ const PartnerState=(props)=>{
         var registration=await axios.post("/v1/partner/signup",user);
 
         if(registration.data.message){
-            setAuthAlert(registration.data.message);
             setRegister(false);  
             SET_LOADING(false)       
    
@@ -156,6 +155,7 @@ const PartnerState=(props)=>{
             // LOGOUT,
             profile,
             LOAD_PROFILE,
+            setRegister
             // setAuthentication
             
         }}>

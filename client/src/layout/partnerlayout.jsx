@@ -58,11 +58,9 @@ function PartnerLayout(props){
       
       
       useEffect(()=>{
-        
         if(checkProfile()===0){
           setProfileUpdate(false)
         }
-
       })
      
 
