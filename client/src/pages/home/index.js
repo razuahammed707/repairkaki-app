@@ -41,7 +41,7 @@ function Index(){
                 <Card style={{ width: '100%' }}>
                 <Card.Img variant="top" src={step1} />
                 <Card.Body>
-                    <Card.Title>STEP 1</Card.Title>
+                    <Card.Title>Test1</Card.Title>
                     <Card.Text>
                     Start a chat with Repairkaki on your chosen platform - WhatsApp, Telegram or Facebook Messenger. Follow the instructions and tell us as much as possible about the repairs/service needed for your vehicle.
                     </Card.Text>
