@@ -5,7 +5,7 @@
 }
 .homeNav{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     padding: 10px 0;
     width: 100%;
 }
@@ -25,9 +25,10 @@
 
 }
 .homeMenu{
-    display: flex;
-    align-items: center;
-    justify-content: right;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   text-align: right;
+   align-items: center;
 }
 .homeMenu a:hover{
     color:#ea2147;
@@ -37,7 +38,6 @@
     text-decoration: none;
     display: block;
     font-size: 17px;
-    margin-left: 50px;
     font-weight: 500;
     color:#5d5d5d;
 }
