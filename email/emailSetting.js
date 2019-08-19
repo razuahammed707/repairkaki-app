@@ -16,8 +16,8 @@ async function main(info,template){
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "AKIAQRIZMKUSWH6CJ7FV", // generated ethereal user
-      pass: "BABoZWKxnoT+HFJC60EYsL5rCWC2ChJIJGkLoEFI3jgz" // generated ethereal password
+      user: "ses-smtp-user.20190819-093032", // generated ethereal user
+      pass: "AKIAQRIZMKUS3L7GSZOK,BOwePTjUrDd/CVPZTxO3pPU60LcNhLtnp+xbkSzY6Cri" // generated ethereal password
     }
   });
 
