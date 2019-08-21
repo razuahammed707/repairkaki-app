@@ -46,7 +46,7 @@ function Login(){
     
     if(isAuthenticated && role==="user"){
         return(
-            <Redirect from="/login" to="/user"/>
+            <Redirect from="/login" to="/user/create_quote"/>
         )
     };
 
