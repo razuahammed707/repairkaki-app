@@ -2,19 +2,23 @@ import React,{useState} from "react"
 import authContext from "./authContex";
 import axios from 'axios';
 
-const isLogin =localStorage.getItem("isAuthenticated")
+const isLogin =localStorage.getItem("isAuthenticated");
+const roleIs=localStorage.getItem("role");
 
 const AuthState=(props)=>{
 
     const [AuthAlert,setAuthAlert]=useState("");
     const [isAuthenticated,setAuthentication]=useState(isLogin);
     const [loading,setLoading]=useState(false);
+    const [role,setRole]=useState(roleIs)
 
     // LOGOUT
     const LOGOUT=async()=>{
         setAuthentication(false);
         localStorage.removeItem("isAuthenticated");
         localStorage.removeItem("token");
+        localStorage.removeItem("role");
+
 
 
     }
@@ -44,9 +48,11 @@ const AuthState=(props)=>{
             if(loginResponse.data.token){
                 localStorage.setItem("isAuthenticated",true);
                 localStorage.setItem("token",loginResponse.data.token);
+                localStorage.setItem("role",loginResponse.data.role);
 
                 setAuthentication(true);
                 setAuthAlert("");
+                setRole(loginResponse.data.role)
                 
             }    
             SET_LOADING(false)
@@ -65,7 +71,8 @@ const AuthState=(props)=>{
                 loading,
                 LOGIN,setAuthAlert,
                 LOGOUT,
-                SET_LOADING
+                SET_LOADING,
+                role
 
             }
         }>

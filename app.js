@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/user/index');
 const partnerRouter= require("./routes/partner/partnerIndex");
 
 
@@ -54,7 +54,7 @@ if(process.env.NODE_ENV="production"){
 
 //Partner Route Setup
 app.use("/v1/partner",partnerRouter)
-app.use('/users', usersRouter);
+app.use('/v1/user', usersRouter);
 app.use("/",indexRouter)
 //Database connection
 mongoose.connect(process.env.DB_HOST,{ useNewUrlParser: true },(err)=>{

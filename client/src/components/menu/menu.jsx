@@ -50,7 +50,18 @@ function Menu(props){
                     <Header css={{name:"mobileView"}}/>
                     </div>
                     </li>
-                    <li>
+                    {
+                        
+                        props.menuData.map((item,index)=>{
+                           return(
+                            <li key={index}> 
+                                <NavLink to={item.url} activeClassName="Menuactive">{item.name}</NavLink>
+                            </li>
+                           )
+                        })
+                    
+                    }
+                    {/* <li>
                     <NavLink to="/partner/request" activeClassName="Menuactive">Request</NavLink>
                     </li>
                     <li>
@@ -62,7 +73,7 @@ function Menu(props){
 
                     <li>
                     <NavLink to="/partner/metrics" activeClassName="Menuactive" >Metrics</NavLink>
-                    </li>
+                    </li> */}
 
                     <li>
                     <NavLink to="/"  onClick={logout}>Logout</NavLink>

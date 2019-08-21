@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React,{useState,useEffect} from "react"
 import PartnerContext from "./partnerContext";
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ const PartnerState=(props)=>{
     // const authContext=useContext(AuthContext)
 
     const [loading,setLoading]=useState(false);
-    // const [request,setRequest]=useState([]);
+    const [quotes,setQuote]=useState([]);
     // const [quotation,setQuotation]=useState([]);
     const [AuthAlert,setAuthAlert]=useState("");
     const [profile,setProfile]=useState({});
@@ -21,44 +21,21 @@ const PartnerState=(props)=>{
 
     
     const initialState={
-        request:[
-            {
-                _id:1233,
-                request_type:"Repair",
-                imageGallery:[
-                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg",
-                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
-                ],
-                title:"Conduct at an replied removal an among",
-                carModel:"Audi A8",
-                description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique."
-    
-            },
-            {
-                _id:1233,
-                request_type:"Repair",
-                imageGallery:[
-                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg",
-                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
-                ],
-                title:"Conduct at an replied removal an among",
-                carModel:"Audi A8",
-                description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique."
-    
-            },
-            {
-                _id:1233,
-                request_type:"Repair",
-                imageGallery:[
-                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg",
-                    "https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
-                ],
-                title:"Conduct at an replied removal an among",
-                carModel:"Audi A8",
-                description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique."
-    
-            }]
+        request:quotes
     }
+    const GET_QUOTE=async()=>{
+        setLoading(true)
+        var quoteList=await axios.post("/v1/user/get_quotes");
+        setQuote(quoteList.data)
+        setLoading(false)
+
+    }
+
+    useEffect(()=>{
+        GET_QUOTE()
+    },[])
+
+  
     // Set Auth Alert
     const SET_AUTH_ALERT=(msg)=>{
         setAuthAlert(msg);
@@ -71,6 +48,7 @@ const PartnerState=(props)=>{
         return(
             setProfile(profile.data)
         )
+
     }
 
     
@@ -155,7 +133,8 @@ const PartnerState=(props)=>{
             // LOGOUT,
             profile,
             LOAD_PROFILE,
-            setRegister
+            setRegister,
+            GET_QUOTE
             // setAuthentication
             
         }}>

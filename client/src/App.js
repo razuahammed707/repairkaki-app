@@ -9,9 +9,13 @@ import PartnerState from "./context/partner/partnerState";
 import AuthState from "./context/auth/authState";
 import NotFound from "./pages/home/notfound";
 import Forgot from "./pages/home/forgot";
-import ResetVerification from "./pages/home/reset-verification"
+import ResetVerification from "./pages/home/reset-verification";
+import UserLayout from "./layout/userlayout";
+
 
 function App(){
+
+
   return ( 
     <AuthState>
       <PartnerState>
@@ -25,6 +29,8 @@ function App(){
 
               <Route path="/signup" component={SignUp}/>
               <Route path="/partner" component={PartnerLayout} /> 
+              <Route path="/user" component={UserLayout} /> 
+
               <Route path="/*" component={NotFound} /> 
             </Switch>  
           </Router>  

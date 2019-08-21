@@ -20,4 +20,18 @@ module.exports.upload=multer({
         cb(null, `partner-${Date.now().toString()}-${file.originalname}`)
       }
     })
+})
+
+module.exports.quote=multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'repairkaki/quote',
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb) {
+      cb(null, `quote-${Date.now().toString()}-${file.originalname}`)
+    }
   })
+})
+

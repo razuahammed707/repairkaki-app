@@ -16,7 +16,7 @@ function Login(){
     const partnerContext=useContext(PartnerContext);
     const authContext = useContext(AuthContext);
 
-    const {AuthAlert,isAuthenticated,loading}=authContext;
+    const {AuthAlert,isAuthenticated,loading,role}=authContext;
     console.log(AuthAlert)
 
 
@@ -38,11 +38,18 @@ function Login(){
         }, 5000);
     }
 
-    if(isAuthenticated){
+    if(isAuthenticated && role==="partner"){
         return(
             <Redirect from="/login" to="/partner/request"/>
         )
-    }
+    };
+    
+    if(isAuthenticated && role==="user"){
+        return(
+            <Redirect from="/login" to="/user"/>
+        )
+    };
+
     return(
         <div className="HomePage">
             <MainNav/>

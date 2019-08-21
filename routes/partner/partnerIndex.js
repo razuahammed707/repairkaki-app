@@ -66,6 +66,7 @@ router.post("/signup",(req,res,next)=>{
                     "role":partner.local.role,
                     "country":partner.local.country
                 }
+
                 PartnerProfile.create(Profile,(err,profile)=>{
                     console.log("Profile is created for"+profile.username);
                     var token=`https://${req.hostname}/verify/${profile._id}`;
@@ -146,7 +147,8 @@ router.post('/login',(req, res, next) => {
           //Sign the JWT token and populate the payload with the user email and id
           const token = jwt.sign({ user : body },'top_secret');
           //Send back the token to the user
-          return res.json({ token });
+          console.log(req.user.local.role)
+          return res.json({ token,role:req.user.local.role});
         });     } catch (error) {
         return next(error);
       }

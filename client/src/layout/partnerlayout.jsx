@@ -64,7 +64,7 @@ function PartnerLayout(props){
       })
      
 
-      const {isAuthenticated}=authContext
+      const {isAuthenticated,role}=authContext
 
   
       useEffect(()=>{
@@ -73,8 +73,8 @@ function PartnerLayout(props){
       },[])
       
 
-      if(isAuthenticated){
-      }
+      // if(isAuthenticated){
+      // }
       
 
       
@@ -85,24 +85,43 @@ function PartnerLayout(props){
         const resend= await axios.post("/v1/partner/resend",{_id:profile._id});
         setEmail("Email sent")
         return(resend)
-
       }
+      
       //remove setEmail
       setTimeout(()=>{
         setEmail("")
 
-      },2000)
+      },2000);
 
 
-      
+    var MenuItem=[{
+        name:"Request",
+        url:"/partner/request"
+    },
+    {
+        name:"Submitted Quotations",
+        url:"/partner/submitted_quotation"
+    },
+    {
+        name:"Appoinment",
+        url:"/partner/appointment"
+    },
+    {
+      name:"Metrics",
+      url:"/partner/metrics"
+  }
+    ];
 
-        console.log(isAuthenticated)
-        if(!isAuthenticated){
-          return(<Redirect to="/login"/>)
-        }else{
+
+
+        if(role==="user"){
+          return(<Redirect to="/user"/>)
+
+        }
+        if(isAuthenticated && role==="partner"){
           return(
             <div className="grid-2-menu">
-            <Menu/>
+            <Menu menuData={MenuItem}/>
             <div className="main_header">
             <Header css={{name:"desktopView"}}/>
       
@@ -125,6 +144,10 @@ function PartnerLayout(props){
             </div>
           </div>
            )
+        }
+
+        if(!isAuthenticated){
+          return(<Redirect to="/login"/>)
         }
    
       

@@ -5,23 +5,18 @@ import PartnerContext from "../context/partner/partnerContext";
 import GridView from "./view/grid"
 import ListView from "./view/list"
 import NoData from "./nodata";
-
+import Spinner from "../components/spinners"
 
 
 function Quations(){
     const partnerContext = useContext(PartnerContext);
-    const {request}=partnerContext;
-    const [view,SetView]=useState(GridView)
+    const {request,loading}=partnerContext;
+    const [view,SetView]=useState((<GridView/>));
     
     
-    // useEffect(()=>{
-    //     view
-    // },[])
-
+ 
     var changeView=(e)=>{
         const view = e.target.value;
-
-
         if(view==="list"){
             SetView(ListView)
         }
@@ -31,7 +26,9 @@ function Quations(){
         }
     }
 
-
+    // if(loading){
+    //     return(<Spinner/>)
+    // }
     if(request.length>0){
         return(
             <div>
@@ -45,14 +42,17 @@ function Quations(){
                 </select>
                     </div>
                 </div>
+                {(loading?(<div className="loadingSpinner"><Spinner/></div>):null)}
                 {view}
             </div>
-        )
-    }else{
-        return(
-            <NoData/>
-        )
+        )    
     }
+    
+    return(
+        <NoData/>
+    )
+
+    
 
    
 

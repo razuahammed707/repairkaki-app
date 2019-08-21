@@ -7,6 +7,8 @@ import PartnerContext from "../../context/partner/partnerContext";
 function GridView(){
     const partnerContext = useContext(PartnerContext);
     const {request}=partnerContext;
+
+    console.log(request)
     return(
         <div className="grid-4"> 
              {
@@ -15,14 +17,13 @@ function GridView(){
                          <div key={index}>
                          <div className="Quotation">
                          <div className="cardImages" >   
-                             <img src={item.imageGallery[0]} alt="item-gallery"/>
+                             <img src={item.pictures[0]} alt="item-gallery"/>
                              <div className="Quotation_type">
-                                 <p>{item.request_type}</p>
+                                 <p>{item.problemType}</p>
                              </div>
                          </div>
                          <div className="cardContent">
-                             <h3>{item.title}</h3>
-                             <p>{item.description}</p>
+                            <p>{item.description}</p>
                          </div>
                          <hr/>
                          <div className="carModel">

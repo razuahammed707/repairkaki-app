@@ -14,7 +14,7 @@ function ListView(){
              return(
                  <div key={index} className="listItem">
                         <div className="listImage" >   
-                            <img src={item.imageGallery[0]} alt="ListGallery"/>
+                            <img src={item.pictures[0]} alt="ListGallery"/>
                         </div>
 
                         <div className="carModel">
