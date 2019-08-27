@@ -2,6 +2,17 @@
     box-sizing: border-box;
 }
 
+.uploadSection{
+    width: 100%;
+    background: #f2f2f2;
+    padding: 20px 0;
+}
+.uploadSection img{
+    width: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
 p,h1,h2,h3,h4,h5,h6{
     margin: 0;
     padding: 0;

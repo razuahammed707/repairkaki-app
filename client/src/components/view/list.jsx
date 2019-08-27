@@ -8,17 +8,17 @@ function ListView(){
     const partnerContext = useContext(PartnerContext);
     const {request}=partnerContext;
     return(
-        <div className="listView">
+        <div className="listView userView">
         {
          request.map((item,index)=>{
              return(
                  <div key={index} className="listItem">
                         <div className="listImage" >   
-                            <img src={item.pictures[0]} alt="ListGallery"/>
+                            <img src={item.pictures[0].location} alt="ListGallery"/>
                         </div>
 
                         <div className="carModel">
-                            <p>{item.request_type}</p>
+                            <p>{item.problemType}</p>
                          </div>
 
                         <div className="carModel">

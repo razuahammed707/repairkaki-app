@@ -1,10 +1,50 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
 import axios from "axios"
-import Spinner from "../../components/spinners"
+import Spinner from "../../components/spinners";
+import Dropzone from 'react-dropzone'
+import UploadIcon from "./uploadIcon.png";
+import PartnerContext from "../../context/partner/partnerContext";
 
-function CreateQuote(){
+
+
+function CreateQuote(props){
+    
 
     const [loading,setLoading]=useState(false);
+    const [inputFiles,setinputFiles]=useState([]);
+    const [fileprevew,setFilePreview]=useState([])
+
+    const partnerContext =useContext(PartnerContext);
+    const {_id}=partnerContext.profile; 
+
+
+
+
+    const uploadFile=async (acceptedFiles) =>{
+
+        var formData = new FormData();
+
+        acceptedFiles.map((item)=>{
+            // formData.append("pictures",item);
+            var OldInputList = inputFiles;
+            OldInputList.push(item)
+            setinputFiles(OldInputList);
+
+            let reader = new FileReader();
+            let file = item;
+    
+            reader.onloadend = () => {
+                var oldPreview= fileprevew;
+                oldPreview.push(reader.result)
+                setFilePreview(oldPreview)
+                console.log(fileprevew)
+            }
+            reader.readAsDataURL(file)
+        });
+         console.log(inputFiles);
+    } 
+   
+
 
     const createQuote =async (e)=>{
         setLoading(true)
@@ -15,28 +55,23 @@ function CreateQuote(){
         const carModel=e.target.carModel.value;
         const problemType=e.target.problemType.value;
         const description=e.target.description.value;
-        const pictures=e.target.pictures.files[0];
-
-        // const quote={
-        //     address,
-        //     mobile,
-        //     email,
-        //     problemType,
-        //     description
-        // }
-
-        var formData = new FormData();
+        const userId=_id;
         
-        formData.append("pictures",pictures);
+        var formData = new FormData();
+    
         formData.set("address",address);
         formData.set("mobile",mobile);
         formData.set("carModel",carModel);
+        formData.set("userId",userId);
 
         formData.set("email",email);
         formData.set("problemType",problemType);
         formData.set("description",description);
 
+        inputFiles.map(item=>{
+            formData.append("pictures",item);
 
+         })
 
         var output=await axios.post('/v1/user/create_quote', formData, {
             headers: {
@@ -46,9 +81,10 @@ function CreateQuote(){
 
 
         console.log(output)
-        setLoading(false)
+        setLoading(false);
+        props.history.push("/user/quote_received")
 
-    }
+    };
 
 
 
@@ -98,7 +134,29 @@ function CreateQuote(){
 
                 <div className="profile-input-grid">
                     <label htmlFor="pictures">Picture</label>
-                    <input type="file" name="pictures" multiple/>
+
+                    <Dropzone onDrop={uploadFile}>
+                    {({getRootProps, getInputProps,isDragActive, isDragReject}) => (
+                        <section className="uploadQuoteImages" className={(isDragActive?"activeDrag":"notActive")}>
+                        <div {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            <img src={UploadIcon} alt="upload_icon" className="uploadImage"/>
+
+                            <p className="dropTitle">{isDragActive && 'Drop Here'}
+                            </p>
+                        </div>
+                        <div className="previewOption">
+                        {fileprevew.map((item,index)=>{
+                            return(
+                                <img src={item}/>
+)
+                        })}
+                        </div>
+                        
+                        </section>
+                    )}
+                    </Dropzone>
+                                         
                 </div>
  
  

@@ -1,32 +1,47 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {Form,Carousel,Button,ButtonToolbar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
+import axios from "axios"
 
 function CreateQuotation({match}){
+
+    const [quote,setQuote]=useState({});
+    const [pic,setPic]=useState([]);
+
+    const loadQuote=async ()=>{
+        var output=await axios.post('/v1/user/find_quote',{"id":match.params.id})
+        setQuote(output.data);
+        setPic(output.data.pictures)
+        
+    }
+
+
+    useEffect(()=>{
+        loadQuote();
+    },[])
+ 
     return(
       <div className="quotationBox">
         <Carousel>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src="https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
-                    alt="First slide"
-                    />
-
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src="https://cars.usnews.com/images/article/201003/122786/car-repairs-1_640x420.jpg"
-                    alt="First slide"
-                    />
-
-                </Carousel.Item>
+                {pic.map((item,index)=>{
+                    return(
+                        <Carousel.Item key={index}>
+                        <img
+                        className="d-block w-100"
+                        src={item.location}
+                        alt={item.originalname}
+                        />
+                    </Carousel.Item>
+                    )
+                })
+                    
+            }
+          
         </Carousel>
-        <div>
-            <label>Lorem ipsum dolor sit, amet consectetur</label>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam at debitis voluptatem quos reprehenderit quod laboriosam amet iste incidunt nisi eaque, ea quia libero officia rerum aliquam exercitationem repellat. Similique.</p>
-        </div>
+        <p>
+            {quote.description}
+        </p>
+
         <Form>
             <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Control as="textarea"  placeholder="Please Enter your advice and comments here"  rows="3" />

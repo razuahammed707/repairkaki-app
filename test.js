@@ -1,7 +1,30 @@
-const bcrypt   = require('bcrypt-nodejs');
+const AWS = require('aws-sdk');
+const fs = require('fs');
+const path = require('path');
 
-var data=bcrypt.hashSync("123",bcrypt.genSaltSync(8),null)
+//configuring the AWS environment
+AWS.config.update({
+    secretAccessKey: 'KIn+VgfLsExOxQNExTdYxqlP0FvFfQkQDOH6mOYE',
+    accessKeyId: 'AKIAQRIZMKUSQOPVSLJV'});
 
-var isMath=bcrypt.compareSync("123", '$2a$08$NzK7Fo3qjzVeo.Kh4kHKn.ATqNYX7K.p5DuR4obFOMM0lDz66FBHq');
+var s3 = new AWS.S3();
+var filePath = "./email/emailSetting.js";
 
-console.log(isMath)
+//configuring parameters
+var params = {
+  Bucket: 'repairkaki',
+  Body : fs.createReadStream(filePath),
+  Key : "folder/"+Date.now()+"_"+path.basename(filePath)
+};
+
+s3.upload(params, function (err, data) {
+  //handle error
+  if (err) {
+    console.log("Error", err);
+  }
+
+  //success
+  if (data) {
+    console.log("Uploaded in:", data.Location);
+  }
+});

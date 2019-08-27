@@ -16,6 +16,8 @@ const PartnerState=(props)=>{
     const [profile,setProfile]=useState({});
     // const [isAuthenticated,setAuthentication]=useState(false);
     const [isRegister,setRegister]=useState(false);
+    const [quoteList,setQuoteList]=useState([]);
+
 
 
 
@@ -65,6 +67,14 @@ const PartnerState=(props)=>{
 
         
     // }
+
+    const getListQuote = async()=>{
+        const userQuote=await axios.post("/v1/user/user_quote",{id:profile._id})
+        setQuoteList(userQuote.data)
+    }
+
+
+
 
     // REGISTRATION
     const REGISTER=async(user)=>{
@@ -134,7 +144,10 @@ const PartnerState=(props)=>{
             profile,
             LOAD_PROFILE,
             setRegister,
-            GET_QUOTE
+            GET_QUOTE,
+            getListQuote,
+            quoteList
+
             // setAuthentication
             
         }}>

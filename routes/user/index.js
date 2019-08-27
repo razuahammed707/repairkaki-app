@@ -5,11 +5,6 @@ const Quote = require("../../models/quotes");
 const S3 = require("../../config/s3")
 
 
-// router.post("/",(req,res,next)=>{
-
-
-    
-// })
 
 router.post("/get_quotes",(req,res,next)=>{
     Quote.find({},(err,quote)=>{
@@ -19,8 +14,36 @@ router.post("/get_quotes",(req,res,next)=>{
 });
 
 
+router.post("/user_quote",(req,res,next)=>{
+    console.log(req.body)
 
-router.post('/create_quote', S3.quote.array('pictures', 1),function(req, res, next) {
+    Quote.find({userId:req.body.id},(err,quote)=>{
+        if(err) throw err;
+        res.send(quote);
+        console.log(quote)
+    })
+});
+
+router.post("/find_quote",(req,res,next)=>{
+
+    Quote.findById(req.body.id,(err,quote)=>{
+        if(err) throw err;
+        res.send(quote);
+        // console.log(quote)
+    })
+});
+
+
+router.post('/multiphoto',S3.quote.array('pictures', 5),function(req, res, next) {
+
+    res.send(req.files)
+    // res.end(req.body)
+    // console.log(req.body.pictures.Files)
+
+
+});
+
+router.post('/create_quote', S3.quote.array('pictures', 10),function(req, res, next) {
 
     // res.send(req.files[0].location)
     const userData={
@@ -30,7 +53,7 @@ router.post('/create_quote', S3.quote.array('pictures', 1),function(req, res, ne
         email:req.body.email,
         problemType:req.body.problemType,
         description:req.body.description,
-        pictures:[req.files[0].location],
+        pictures:req.files,
         carModel:req.body.carModel
     }
 

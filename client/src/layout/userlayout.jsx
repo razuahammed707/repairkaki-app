@@ -10,6 +10,8 @@ import createQuote from "../components/user/create_quote"
 
 import Menu from "../components/menu/menu"
 
+import ReceivedQuote from "../components/user/quotesReceived"
+
 
 function UserLayout(){
 
@@ -66,16 +68,8 @@ function UserLayout(){
                     {(profile.emailVerified?null:(<Alert variant="danger">Please check your inbox/spam folder to verify your email address. <NavLink to="/partner/request" onClick={resendEmail}>Resend</NavLink> {email}</Alert>))}
                     
                     <Route path="/user/create_quote" component={createQuote}/>
+                    <Route path="/user/quote_received/" component={ReceivedQuote}/>
 
-        
-{/*         
-                      <Route path="/partner/request" component={RequestGrid}/>
-                      <Route path="/partner/profile" component={Profile}/>
-                      <Route path="/partner/submitted_quotation" component={Quotation}/>
-                      <Route path="/partner/appointment" component={Appointment}/>
-                      <Route path="/partner/metrics" component={Metrics}/>
-        
-                      <Route path="/partner/createQuote/:id" component={CreateQuotation}/> */} 
                     </div>
               
                     </div>

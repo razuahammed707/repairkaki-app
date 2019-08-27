@@ -65,7 +65,7 @@ function SignUp(props){
     
                     <form onSubmit={register}>
     
-                    <h6>Complete to create your <span className="coloredText">RepairKaki</span> account</h6>
+                    <h6>Create your <span className="coloredText">RepairKaki</span> Account</h6>
                     {(AuthAlert===""||AuthAlert===true?null:(<Alert variant="danger">This email already has an account,<a href="/login"> Log In now</a></Alert>))}
     
                     <input type="text" placeholder="Name" name="username" id="name" required/>

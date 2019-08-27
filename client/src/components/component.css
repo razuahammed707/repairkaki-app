@@ -2,16 +2,41 @@
     text-align: center;
     padding-top: 40px;
 }
+.notActive{
+    border: 5px dotted #ddd;
+    padding: 20px 0;
+}
+.activeDrag{
+    border: 5px dotted #f5385d;
+    padding: 20px 0;
+}
+.dropTitle{
+    text-align: center;
+}
 .noData h1{
     color:#f5385d;
 }
+
 .listItem{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr  1fr;
     height: 100px;
     box-shadow: 0 0 10px #ddd;
     margin: 15px 0;
-
+}
+.previewOption{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+.previewOption img{
+    width: 100px;
+    height: 100px;;
+    object-fit: cover;
+}
+.uploadImage{
+    display: block;
+    margin: 0 auto;
 }
 .ViewType{
     display: flex;

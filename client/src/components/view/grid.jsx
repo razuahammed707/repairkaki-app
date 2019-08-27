@@ -17,7 +17,7 @@ function GridView(){
                          <div key={index}>
                          <div className="Quotation">
                          <div className="cardImages" >   
-                             <img src={item.pictures[0]} alt="item-gallery"/>
+                             <img src={item.pictures[0].location} alt="item-gallery"/>
                              <div className="Quotation_type">
                                  <p>{item.problemType}</p>
                              </div>
