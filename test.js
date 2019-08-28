@@ -4,8 +4,8 @@ const path = require('path');
 
 //configuring the AWS environment
 AWS.config.update({
-    secretAccessKey: 'KIn+VgfLsExOxQNExTdYxqlP0FvFfQkQDOH6mOYE',
-    accessKeyId: 'AKIAQRIZMKUSQOPVSLJV'});
+    secretAccessKey: process.env.secretKey,
+    accessKeyId: process.env.accessKey});
 
 var s3 = new AWS.S3();
 var filePath = "./email/emailSetting.js";
