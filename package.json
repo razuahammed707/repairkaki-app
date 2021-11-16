@@ -7,7 +7,7 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
-    "aws-sdk": "^2.517.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^3.0.6",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
